@@ -25,8 +25,9 @@
         <activity android:name=".Ligas" />
         <activity android:name=".Entrenadores" />
         <activity android:name=".Atletas"/>
-        <activity android:name=".Registrar2"/>
-        <activity android:name=".EntrenoProgramado"></activity>
+        <activity android:name=".InicioEntrenamiento"/>
+        <activity android:name=".EntrenoProgramado"/>
+         <activity android:name=".PlanSemanal"></activity>
     </application>
 
 </manifest>

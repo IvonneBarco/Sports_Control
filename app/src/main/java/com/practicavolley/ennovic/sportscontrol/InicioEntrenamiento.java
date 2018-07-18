@@ -29,7 +29,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Registrar2 extends AppCompatActivity {
+public class InicioEntrenamiento extends AppCompatActivity {
 
     //Entreno iniciar
 
@@ -43,7 +43,7 @@ public class Registrar2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrar2);
+        setContentView(R.layout.activity_inicio_entrenamiento);
 
         descripcion = (EditText) findViewById(R.id.descripcion_id);
         iniciar = (Button) findViewById(R.id.btnagregar);
@@ -87,9 +87,9 @@ public class Registrar2 extends AppCompatActivity {
                     identificador = objresultado.get("id").toString();
                     if (!estadox.equalsIgnoreCase("exito")) {
                         //Toast.makeText(this,"errot",Toast.LENGTH_LONG).show();
-                        Toast.makeText(Registrar2.this, "error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(InicioEntrenamiento.this, "error", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(Registrar2.this, identificador, Toast.LENGTH_LONG).show();
+                        Toast.makeText(InicioEntrenamiento.this, identificador, Toast.LENGTH_LONG).show();
                         iniciar.setEnabled(false);
                         descripcion.setEnabled(false);
                         actualizar.setEnabled(true);
@@ -135,10 +135,10 @@ public class Registrar2 extends AppCompatActivity {
                     String estadox = objresultado.get("estado").toString();
                     if (!estadox.equalsIgnoreCase("exito")) {
                         //Toast.makeText(this,"errot",Toast.LENGTH_LONG).show();
-                        Toast.makeText(Registrar2.this, "error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(InicioEntrenamiento.this, "error", Toast.LENGTH_LONG).show();
                     } else {
-                        //Toast.makeText(Registrar2.this, "error",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(Registrar2.this, HomeActivity.class);
+                        //Toast.makeText(InicioEntrenamiento.this, "error",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(InicioEntrenamiento.this, HomeActivity.class);
                         startActivity(intent);
 
                     }
@@ -192,7 +192,7 @@ public class Registrar2 extends AppCompatActivity {
                         }
 
 
-                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Registrar2.this, android.R.layout.simple_spinner_item, datos); //selected item will look like a spinner set from XML
+                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(InicioEntrenamiento.this, android.R.layout.simple_spinner_item, datos); //selected item will look like a spinner set from XML
 
                         spinner.setAdapter(spinnerArrayAdapter);
 

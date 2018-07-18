@@ -163,6 +163,8 @@
                     android:backgroundTint="@color/colorPrimaryDark"
                     android:padding="12dp"
                     android:text="REGRISTRAR"
+                    android:theme="@style/StyleButton"
+                    android:textStyle="bold"
                     android:textColor="@android:color/white" />
             </LinearLayout>
 

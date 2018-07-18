@@ -99,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(HomeActivity.this, "Iniciar entrenamiento", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(HomeActivity.this, Registrar2.class);
+                Intent intent = new Intent(HomeActivity.this, InicioEntrenamiento.class);
                 //intent.putExtra("DATOS_USER", user);
                 startActivity(intent);
             }
