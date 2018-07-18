@@ -53,8 +53,10 @@ public class Deportes extends AppCompatActivity {
         //Se recupera los datos del usuario que inicio sesión
         Bundle bundle = getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
-        ((TextView) findViewById(R.id.idSesion)).setText(user.getId() + "");
-        ((TextView) findViewById(R.id.roleSesion)).setText(user.getRole());
+        /*((TextView) findViewById(R.id.idSesion)).setText(user.getId() + "");
+        ((TextView) findViewById(R.id.roleSesion)).setText(user.getRole());*/
+        user.getId();
+        user.getRole();
 
         //INICIO CODIGO RECYCLER
 
@@ -81,7 +83,7 @@ public class Deportes extends AppCompatActivity {
                             JSONArray deportes = objresultado.getJSONArray("resultado");
 
                             if (deportes.length() <= 0) {
-                                Toast.makeText(Deportes.this, "NO HAY DATOS", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Deportes.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
 
                             } else {
 
@@ -91,7 +93,7 @@ public class Deportes extends AppCompatActivity {
 
                                     sport.setIddeporte(String.valueOf(objdeporte.optInt("iddeporte")));
                                     sport.setNombredeporte(objdeporte.optString("nombre"));
-                                    sport.setFoto(R.drawable.icon_sports);
+                                    sport.setFoto(R.drawable.basketball_jersey);
                                     listaDeportes.add(sport);
 
 
@@ -102,8 +104,8 @@ public class Deportes extends AppCompatActivity {
                                 adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Toast.makeText(getApplicationContext(), "Selección: " +
-                                                listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getNombredeporte(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "" +
+                                                listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getNombredeporte(), Toast.LENGTH_SHORT).show();
 
                                         //Envio de variables DATOS_USER
                                         Intent intentd = new Intent(Deportes.this, Ligas.class);
@@ -119,7 +121,7 @@ public class Deportes extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(Deportes.this, "NO HAY CONEXIÓN", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Deportes.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
                         }
 
                     }

@@ -35,9 +35,9 @@ public class AdaptadorAtletas extends RecyclerView.Adapter<AdaptadorAtletas.View
 
         public ViewHolderAtletas(View itemView) {
             super(itemView);
-            etiqueta_id_atleta = (TextView)itemView.findViewById(R.id.id_atleta_list);
+            //etiqueta_id_atleta = (TextView)itemView.findViewById(R.id.id_atleta_list);
             etiqueta_nombre_atleta = (TextView)itemView.findViewById(R.id.id_nombre_atleta_list);
-            etiqueta_apellido_atleta = (TextView)itemView.findViewById(R.id.id_apellido_atleta_list);
+            //etiqueta_apellido_atleta = (TextView)itemView.findViewById(R.id.id_apellido_atleta_list);
             etiqueta_rendimiento_atleta = (TextView)itemView.findViewById(R.id.id_rendimiento_atleta_list);
             etiqueta_foto = (ImageView)itemView.findViewById(R.id.id_imagen_atleta_list);
         }
@@ -45,11 +45,11 @@ public class AdaptadorAtletas extends RecyclerView.Adapter<AdaptadorAtletas.View
 
     @Override
     public void onBindViewHolder(AdaptadorAtletas.ViewHolderAtletas holder, int position) {
-        holder.etiqueta_id_atleta.setText(listaAtletas.get(position).getIdatleta());
-        holder.etiqueta_nombre_atleta.setText(listaAtletas.get(position).getNombreatleta());
-        holder.etiqueta_apellido_atleta.setText(listaAtletas.get(position).getApellidoatleta());
-        holder.etiqueta_rendimiento_atleta.setText(listaAtletas.get(position).getNivelrendimientoatleta());
-        //holder.etiqueta_foto.setImageResource(listaAtletas.get(position).getFoto());
+        //holder.etiqueta_id_atleta.setText(listaAtletas.get(position).getIdatleta());
+        holder.etiqueta_nombre_atleta.setText(listaAtletas.get(position).getNombreatleta().toUpperCase() + " " + listaAtletas.get(position).getApellidoatleta().toUpperCase());
+        //holder.etiqueta_apellido_atleta.setText(listaAtletas.get(position).getApellidoatleta());
+        holder.etiqueta_rendimiento_atleta.setText("Rendimiento: " + listaAtletas.get(position).getNivelrendimientoatleta());
+        holder.etiqueta_foto.setImageResource(listaAtletas.get(position).getFoto());
     }
 
     @Override

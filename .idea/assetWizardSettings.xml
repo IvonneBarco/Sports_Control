@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_visibility_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_navigate_next_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,11 +28,11 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="height" value="64" />
-                            <entry key="outputName" value="ic_visibility_black_64dp" />
+                            <entry key="height" value="72" />
+                            <entry key="outputName" value="ic_navigate_next_black_72dp" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\ASUS" />
-                            <entry key="width" value="64" />
+                            <entry key="width" value="72" />
                           </map>
                         </option>
                       </PersistentState>

@@ -49,12 +49,17 @@ public class Atletas extends AppCompatActivity {
         // Recuperando variables usuario, deporte y liga
         Bundle bundle = getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
-        ((TextView) findViewById(R.id.idSesiona)).setText("ID USUARIO: " + user.getId());
+        /*((TextView) findViewById(R.id.idSesiona)).setText("ID USUARIO: " + user.getId());
         ((TextView) findViewById(R.id.rolSesiona)).setText("ROL: " + user.getRole());
         String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
         ((TextView) findViewById(R.id.id_iddeporte_liga)).setText("ID DEPORTE: " + recuperamos_iddeporte);
         String recuperamos_idliga = getIntent().getStringExtra("idliga");
-        ((TextView) findViewById(R.id.id_idliga)).setText("ID LIGA: " + recuperamos_idliga);
+        ((TextView) findViewById(R.id.id_idliga)).setText("ID LIGA: " + recuperamos_idliga);*/
+
+        user.getId();
+        user.getRole();
+        String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
+        String recuperamos_idliga = getIntent().getStringExtra("idliga");
         // Fin * Recuperando variables usuario y deporte
 
         //Inicio * Recycler
@@ -80,7 +85,7 @@ public class Atletas extends AppCompatActivity {
                             JSONArray athletes = objresultado.getJSONArray("athleta");
 
                             if (athletes.length() <= 0) {
-                                Toast.makeText(Atletas.this, "NO HAY DATOS", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Atletas.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
 
                             } else {
 
@@ -92,7 +97,7 @@ public class Atletas extends AppCompatActivity {
                                     athlete.setNombreatleta(objAtletas.optString("nombre"));
                                     athlete.setApellidoatleta(objAtletas.optString("apellido"));
                                     athlete.setNivelrendimientoatleta(objAtletas.optString("nivelrendimiento"));
-                                    athlete.setFoto(R.drawable.icon_sports);
+                                    athlete.setFoto(R.drawable.weightlifting);
                                     listaAtletas.add(athlete);
 
 
@@ -102,7 +107,7 @@ public class Atletas extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(Atletas.this, "NO HAY CONEXIÓN", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Atletas.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
                         }
 
                     }

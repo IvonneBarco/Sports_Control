@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -46,5 +46,73 @@
             android:background="@color/colorPrimary"
             android:layout_marginTop="11dp"/>
     </LinearLayout>
+
+</LinearLayout>-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/id_imagen_liga_list"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:id="@+id/layout_info"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/id_imagen_liga_list">
+
+            <TextView
+                android:id="@+id/id_nombre_liga_list"
+                android:layout_width="wrap_content"
+                android:layout_height="71dp"
+                android:text="NOMBRE LIGA"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:textStyle="bold|normal" />
+
+            <!--<TextView
+                android:id="@+id/id_entrenadores_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rendimiento"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Liga deportiva"/>-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/layout_info"
+            android:gravity="center|center_vertical">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_navigate_next_black_72dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
 
 </LinearLayout>

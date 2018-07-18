@@ -36,7 +36,7 @@ public class AdaptadorDeportes extends RecyclerView.Adapter<AdaptadorDeportes.Vi
 
         public ViewHolderDeportes(View itemView) {
             super(itemView);
-            etiqueta_iddeporte = (TextView)itemView.findViewById(R.id.id_deporte_list);
+            //etiqueta_iddeporte = (TextView)itemView.findViewById(R.id.id_deporte_list);
             etiqueta_deporte = (TextView)itemView.findViewById(R.id.id_nombre_deporte_list);
             etiqueta_foto = (ImageView)itemView.findViewById(R.id.id_imagen_deporte_list);
         }
@@ -44,7 +44,7 @@ public class AdaptadorDeportes extends RecyclerView.Adapter<AdaptadorDeportes.Vi
 
     @Override
     public void onBindViewHolder(ViewHolderDeportes holder, int position) {
-        holder.etiqueta_iddeporte.setText(listaDeportes.get(position).getIddeporte());
+       //holder.etiqueta_iddeporte.setText(listaDeportes.get(position).getIddeporte());
         holder.etiqueta_deporte.setText(listaDeportes.get(position).getNombredeporte());
         holder.etiqueta_foto.setImageResource(listaDeportes.get(position).getFoto());
     }

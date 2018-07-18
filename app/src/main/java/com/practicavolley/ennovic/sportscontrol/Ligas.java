@@ -50,11 +50,14 @@ public class Ligas extends AppCompatActivity {
         // Recuperando variables usuario y deporte
         Bundle bundle = getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
-        ((TextView) findViewById(R.id.idSesion)).setText("ID USUARIO: " + user.getId());
-        ((TextView) findViewById(R.id.roleSesion)).setText("ROL: " + user.getRole());
+        /*((TextView) findViewById(R.id.idSesion)).setText("ID USUARIO: " + user.getId());
+        ((TextView) findViewById(R.id.roleSesion)).setText("ROL: " + user.getRole());*/
 
         final String recuperamos_iddeporte = getIntent().getStringExtra("iddeporte");
-        ((TextView) findViewById(R.id.id_deporte)).setText("ID DEPORTE: " + recuperamos_iddeporte);
+        //((TextView) findViewById(R.id.id_deporte)).setText("ID DEPORTE: " + recuperamos_iddeporte);
+
+        user.getId();
+        user.getRole();
         // Fin * Recuperando variables usuario y deporte
 
         //Inicio * Recycler
@@ -80,7 +83,7 @@ public class Ligas extends AppCompatActivity {
                             JSONArray ligas = objresultado.getJSONArray("ligas");
 
                             if (ligas.length()<=0){
-                                Toast.makeText(Ligas.this, "NO HAY DATOS", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Ligas.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
 
                             }else{
 
@@ -90,7 +93,7 @@ public class Ligas extends AppCompatActivity {
 
                                     liga.setIdliga(String.valueOf(objligas.optInt("idliga")));
                                     liga.setNombreliga(objligas.optString("nombre"));
-                                    liga.setFoto(R.drawable.icon_sports);
+                                    liga.setFoto(R.drawable.team);
                                     listaLigas.add(liga);
 
 
@@ -100,8 +103,8 @@ public class Ligas extends AppCompatActivity {
                                 adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Toast.makeText(getApplicationContext(), "Selección: " +
-                                                listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getNombreliga(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "" +
+                                                listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getNombreliga(), Toast.LENGTH_SHORT).show();
                                         if (user.getRole().equalsIgnoreCase("admin")){
                                             //Envio de variables DATOS_USER
                                             Intent intentd = new Intent(Ligas.this, Entrenadores.class);
@@ -130,7 +133,7 @@ public class Ligas extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(Ligas.this, "NO HAY CONEXIÓN", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Ligas.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
                         }
 
                     }

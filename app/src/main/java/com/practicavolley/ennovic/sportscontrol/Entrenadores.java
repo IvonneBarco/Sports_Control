@@ -51,12 +51,17 @@ public class Entrenadores extends AppCompatActivity {
         // Recuperando variables usuario, deporte y liga
         Bundle bundle = getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
-        ((TextView) findViewById(R.id.idSesionl)).setText("ID USUARIO: " + user.getId());
+        /*((TextView) findViewById(R.id.idSesionl)).setText("ID USUARIO: " + user.getId());
         ((TextView) findViewById(R.id.rolSesionl)).setText("ROL: " + user.getRole());
         String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
         ((TextView) findViewById(R.id.id_iddeporte_liga)).setText("ID DEPORTE: " + recuperamos_iddeporte);
         String recuperamos_idliga = getIntent().getStringExtra("idliga");
-        ((TextView) findViewById(R.id.id_idliga)).setText("ID LIGA: " + recuperamos_idliga);
+        ((TextView) findViewById(R.id.id_idliga)).setText("ID LIGA: " + recuperamos_idliga);*/
+
+        user.getId();
+        user.getRole();
+        String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
+        String recuperamos_idliga = getIntent().getStringExtra("idliga");
         // Fin * Recuperando variables usuario y deporte
 
         //Inicio * Recycler
@@ -82,7 +87,7 @@ public class Entrenadores extends AppCompatActivity {
                             JSONArray coaches = objresultado.getJSONArray("entrenadores");
 
                             if (coaches.length() <= 0) {
-                                Toast.makeText(Entrenadores.this, "NO HAY DATOS", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Entrenadores.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
 
                             } else {
 
@@ -93,7 +98,7 @@ public class Entrenadores extends AppCompatActivity {
                                     coach.setIdentrenador(String.valueOf(objentrenadores.optInt("entrenadorid")));
                                     coach.setNombreentrenador(objentrenadores.optString("nombre"));
                                     coach.setApellidoentrenador(objentrenadores.optString("apellido"));
-                                    coach.setFoto(R.drawable.icon_sports);
+                                    coach.setFoto(R.drawable.coach);
                                     listaEntrenadores.add(coach);
 
 
@@ -103,7 +108,7 @@ public class Entrenadores extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(Entrenadores.this, "NO HAY CONEXIÓN", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Entrenadores.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
                         }
 
                     }

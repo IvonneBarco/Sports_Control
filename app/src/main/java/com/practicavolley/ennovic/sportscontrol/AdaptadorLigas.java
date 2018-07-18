@@ -35,7 +35,7 @@ public class AdaptadorLigas extends RecyclerView.Adapter<AdaptadorLigas.ViewHold
 
         public ViewHolderLigas(View itemView) {
             super(itemView);
-            etiqueta_idliga = (TextView)itemView.findViewById(R.id.id_liga_list);
+            //etiqueta_idliga = (TextView)itemView.findViewById(R.id.id_liga_list);
             etiqueta_liga = (TextView)itemView.findViewById(R.id.id_nombre_liga_list);
             etiqueta_foto = (ImageView)itemView.findViewById(R.id.id_imagen_liga_list);
         }
@@ -43,9 +43,9 @@ public class AdaptadorLigas extends RecyclerView.Adapter<AdaptadorLigas.ViewHold
 
     @Override
     public void onBindViewHolder(AdaptadorLigas.ViewHolderLigas holder, int position) {
-        holder.etiqueta_idliga.setText(listaLigas.get(position).getIdliga());
+        //holder.etiqueta_idliga.setText(listaLigas.get(position).getIdliga());
         holder.etiqueta_liga.setText(listaLigas.get(position).getNombreliga());
-        //holder.etiqueta_foto.setImageResource(listaLigas.get(position).getFoto());
+        holder.etiqueta_foto.setImageResource(listaLigas.get(position).getFoto());
     }
 
     @Override
