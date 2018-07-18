@@ -20,7 +20,11 @@
         </activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".AthletesActivity"></activity>
+        <activity android:name=".AthletesActivity"/>
+        <activity android:name=".Deportes" />
+        <activity android:name=".Ligas" />
+        <activity android:name=".Entrenadores" />
+        <activity android:name=".Atletas"></activity>
     </application>
 
 </manifest>
