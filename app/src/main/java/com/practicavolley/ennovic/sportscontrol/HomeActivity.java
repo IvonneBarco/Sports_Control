@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,7 +69,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(HomeActivity.this, "Entrenamiento", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(HomeActivity.this, Registrar.class);
+                Intent intent = new Intent(HomeActivity.this, EntrenoProgramado.class);
                 //intent.putExtra("DATOS_USER", user);
                 startActivity(intent);
             }

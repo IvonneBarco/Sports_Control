@@ -29,7 +29,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Registrar extends AppCompatActivity {
+public class EntrenoProgramado extends AppCompatActivity {
 
     //Entreno programado
 
@@ -42,7 +42,7 @@ public class Registrar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrar);
+        setContentView(R.layout.activity_entreno_programado);
 
         nombre=(EditText) findViewById(R.id.nombre_id);
         fecha=(EditText) findViewById(R.id.fecha_id);
@@ -80,10 +80,10 @@ public class Registrar extends AppCompatActivity {
                     String estadox=objresultado.get("estado").toString();
                     if(!estadox.equalsIgnoreCase("exito")){
                         //Toast.makeText(this,"errot",Toast.LENGTH_LONG).show();
-                        Toast.makeText(Registrar.this, "error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EntrenoProgramado.this, "error", Toast.LENGTH_SHORT).show();
                     }else{
 
-                        Intent intent =new Intent(Registrar.this, HomeActivity.class);
+                        Intent intent =new Intent(EntrenoProgramado.this, HomeActivity.class);
                         startActivity(intent);
                     }
 
@@ -119,7 +119,7 @@ public class Registrar extends AppCompatActivity {
     public void datoscheck(){
 
 
-        RequestQueue queue= Volley.newRequestQueue(Registrar.this);
+        RequestQueue queue= Volley.newRequestQueue(EntrenoProgramado.this);
 
 
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Conexion.URL_WEB_SERVICES+ "listar-semanas.php", new Response.Listener<String>() {
@@ -142,7 +142,7 @@ public class Registrar extends AppCompatActivity {
                         }
 
 
-                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(Registrar.this, android.R.layout.simple_spinner_item, datos); //selected item will look like a spinner set from XML
+                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(EntrenoProgramado.this, android.R.layout.simple_spinner_item, datos); //selected item will look like a spinner set from XML
 
                         spinner.setAdapter(spinnerArrayAdapter);
 

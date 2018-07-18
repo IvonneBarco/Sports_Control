@@ -24,63 +24,83 @@
         app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="right|center">
 
-        <include layout="@layout/actionbar_toolbar" />
+        <include layout="@layout/actionbar_toolbar_main" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Selecionar Entrenamiento"/>
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/EditTextBlack">
-
-            <EditText
-                android:id="@+id/descripcion_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/Descripción"
-                android:inputType="text"
-                android:maxLines="5"
-                android:singleLine="true" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <Button
-            android:id="@+id/btnagregar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/StyleButton"
-            android:textStyle="bold"
-            android:text="Iniciar Entreno" />
-
-        <Button
-            android:id="@+id/btnagregar2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/StyleButton"
-            android:textStyle="bold"
-            android:text="Actualizar Entreno" />
-
-        <Button
-            android:id="@+id/btnagregar3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/StyleButton"
-            android:textStyle="bold"
-            android:text="Parar Entreno" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:paddingTop="10dp"
+                android:text="INICIAR ENTRENAMIENTO"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="22sp"
+                android:textStyle="bold|normal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Selecionar Entrenamiento" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/EditTextBlack">
+
+                <EditText
+                    android:id="@+id/descripcion_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Descripción"
+                    android:inputType="text"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnagregar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Iniciar Entreno"
+                android:drawableRight="@drawable/ic_play_circle_filled_black_24dp"
+                android:drawableTint="@color/colorWhite"
+                android:textStyle="bold"
+                android:theme="@style/StyleButton" />
+
+            <Button
+                android:id="@+id/btnagregar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Actualizar Entreno"
+                android:drawableRight="@drawable/ic_update_black_24dp"
+                android:drawableTint="@color/colorWhite"
+                android:textStyle="bold"
+                android:theme="@style/StyleButton" />
+
+            <Button
+                android:id="@+id/btnagregar3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Parar Entreno"
+                android:drawableRight="@drawable/ic_stop_black_24dp"
+                android:drawableTint="@color/colorWhite"
+                android:textStyle="bold"
+                android:theme="@style/StyleButton" />
 
         </LinearLayout>
 

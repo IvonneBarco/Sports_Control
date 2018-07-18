@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registrar">
+    tools:context=".EntrenoProgramado">
 
     <ProgressBar
         android:id="@+id/home_progress"
@@ -22,7 +22,7 @@
         app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="right|center">
 
-        <include layout="@layout/actionbar_toolbar" />
+        <include layout="@layout/actionbar_toolbar_main" />
 
         <TextView
             android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
                     android:hint="Nombre"
-                    android:textColorHint="@color/colorPrimary">
+                    android:textColorHint="@color/colorBlack">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/nombre_id"
@@ -57,17 +57,18 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:backgroundTint="@color/colorBlack"
                         android:inputType="textCapWords|textPersonName"
                         android:textColor="@android:color/black" />
                 </android.support.design.widget.TextInputLayout>
+
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
                     android:hint="Fecha"
-                    android:textColorHint="@color/colorPrimary">
+                    android:textColorHint="@color/colorBlack">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/fecha_id"
@@ -75,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:backgroundTint="@color/colorBlack"
                         android:inputType="date"
                         android:textColor="@android:color/black" />
                 </android.support.design.widget.TextInputLayout>
@@ -84,8 +85,9 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:hint="Hora Inicio"
-                    android:textColorHint="@color/colorPrimary">
+                    android:textColorHint="@color/colorBlack">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/hinicio_id"
@@ -93,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:backgroundTint="@color/colorBlack"
                         android:inputType="time"
                         android:textColor="@android:color/black" />
                 </android.support.design.widget.TextInputLayout>
@@ -101,8 +103,9 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:hint="Hora Fin"
-                    android:textColorHint="@color/colorPrimary">
+                    android:textColorHint="@color/colorBlack">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/hfin_id"
@@ -110,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:backgroundTint="@color/colorBlack"
                         android:inputType="time"
                         android:textColor="@android:color/black" />
                 </android.support.design.widget.TextInputLayout>
@@ -118,8 +121,9 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:hint="Lugar"
-                    android:textColorHint="@color/colorPrimary">
+                    android:textColorHint="@color/colorBlack">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/lugar_id"
@@ -127,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:backgroundTint="@color/colorBlack"
                         android:inputType="textCapWords|textPersonName"
                         android:textColor="@android:color/black" />
                 </android.support.design.widget.TextInputLayout>
@@ -135,8 +139,9 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:hint="Descripción"
-                    android:textColorHint="@color/colorPrimary">
+                    android:textColorHint="@color/colorBlack">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/descripcion_id"
@@ -144,7 +149,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:backgroundTint="@color/colorBlack"
                         android:inputType="textCapWords|textPersonName"
                         android:textColor="@android:color/black" />
                 </android.support.design.widget.TextInputLayout>

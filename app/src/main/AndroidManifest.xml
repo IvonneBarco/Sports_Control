@@ -26,7 +26,7 @@
         <activity android:name=".Entrenadores" />
         <activity android:name=".Atletas"/>
         <activity android:name=".Registrar2"/>
-        <activity android:name=".Registrar"></activity>
+        <activity android:name=".EntrenoProgramado"></activity>
     </application>
 
 </manifest>
