@@ -6,10 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".AthletesActivity">
 
-    <include layout="@layout/actionbar_toolbar" />
-
-    <android.support.v7.widget.RecyclerView
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_anchor="@+id/linearLayout"
+        app:layout_anchorGravity="right|center">
+
+        <include layout="@layout/actionbar_toolbar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="ATLETAS"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
+        <ListView
+            android:id="@+id/id_list_athletes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+
+    </LinearLayout>
+
+
+
+
 
 </android.support.design.widget.CoordinatorLayout>
