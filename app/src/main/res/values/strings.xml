@@ -17,4 +17,5 @@
     <string name="error_network">Conexión de red no disponible</string>
     <string name="str_title_welcome">BIENVENID@!</string>
     <string name="str_title_app">BIENVENID@ A SPORT CONTOL</string>
+    <string name="Descripción">Descripción</string>
 </resources>

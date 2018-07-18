@@ -24,7 +24,9 @@
         <activity android:name=".Deportes" />
         <activity android:name=".Ligas" />
         <activity android:name=".Entrenadores" />
-        <activity android:name=".Atletas"></activity>
+        <activity android:name=".Atletas"/>
+        <activity android:name=".Registrar2"/>
+        <activity android:name=".Registrar"></activity>
     </application>
 
 </manifest>

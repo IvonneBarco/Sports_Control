@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Registrar2">
+
+
+    <ProgressBar
+        android:id="@+id/home_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_anchor="@+id/linearLayout"
+        app:layout_anchorGravity="right|center">
+
+        <include layout="@layout/actionbar_toolbar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecionar Entrenamiento"/>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/EditTextBlack">
+
+            <EditText
+                android:id="@+id/descripcion_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Descripción"
+                android:inputType="text"
+                android:maxLines="5"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btnagregar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/StyleButton"
+            android:textStyle="bold"
+            android:text="Iniciar Entreno" />
+
+        <Button
+            android:id="@+id/btnagregar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/StyleButton"
+            android:textStyle="bold"
+            android:text="Actualizar Entreno" />
+
+        <Button
+            android:id="@+id/btnagregar3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/StyleButton"
+            android:textStyle="bold"
+            android:text="Parar Entreno" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ScrollView>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

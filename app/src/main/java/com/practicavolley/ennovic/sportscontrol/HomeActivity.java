@@ -20,7 +20,7 @@ import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private LinearLayout athletes, group, training, sports, plans, setting, time;
+    private LinearLayout athletes, group, training, sports, plans, settings, time;
     TextView nombreUsuario, rolUsuario, listarUsuario;
     private Usuario user;
 
@@ -34,7 +34,8 @@ public class HomeActivity extends AppCompatActivity {
         training = findViewById(R.id.btn_training);
         sports = findViewById(R.id.btn_sports);
         plans = findViewById(R.id.btn_plans);
-        setting = findViewById(R.id.btn_settings);
+        settings = findViewById(R.id.btn_settings);
+        time = findViewById(R.id.btn_timer);
 
         athletes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,56 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this, "Deportes", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(HomeActivity.this, Deportes.class);
                 intent.putExtra("DATOS_USER", user);
+                startActivity(intent);
+            }
+        });
+
+        group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomeActivity.this, "Grupo de apoyo", Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(HomeActivity.this, Deportes.class);
+                intent.putExtra("DATOS_USER", user);
+                startActivity(intent);*/
+            }
+        });
+
+        training.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomeActivity.this, "Entrenamiento", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomeActivity.this, Registrar.class);
+                //intent.putExtra("DATOS_USER", user);
+                startActivity(intent);
+            }
+        });
+
+        plans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomeActivity.this, "Cargar Planes", Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(HomeActivity.this, Deportes.class);
+                intent.putExtra("DATOS_USER", user);
+                startActivity(intent);*/
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomeActivity.this, "Configuración", Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(HomeActivity.this, Deportes.class);
+                intent.putExtra("DATOS_USER", user);
+                startActivity(intent);*/
+            }
+        });
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(HomeActivity.this, "Iniciar entrenamiento", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomeActivity.this, Registrar2.class);
+                //intent.putExtra("DATOS_USER", user);
                 startActivity(intent);
             }
         });
