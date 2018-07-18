@@ -58,65 +58,136 @@
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
                         android:backgroundTint="@color/colorBlack"
-                        android:inputType="textCapWords|textPersonName"
-                        android:textColor="@android:color/black" />
+                        android:inputType="text"
+                        android:textColor="@android:color/black"
+                        android:textColorLink="@color/colorAccent" />
                 </android.support.design.widget.TextInputLayout>
 
 
-                <android.support.design.widget.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
-                    android:hint="Fecha"
-                    android:textColorHint="@color/colorBlack">
+                    android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/fecha_id"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:backgroundTint="@color/colorBlack"
-                        android:inputType="date"
-                        android:textColor="@android:color/black" />
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_height="wrap_content">
 
+                        <android.support.design.widget.TextInputLayout
 
-                <android.support.design.widget.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:hint="Fecha"
+                            android:textColorHint="@color/colorBlack">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/fecha_id"
+                                android:layout_width="304dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginTop="2dp"
+                                android:backgroundTint="@color/colorBlack"
+                                android:inputType="date"
+                                android:textColor="@android:color/black" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/btn_fecha"
+                            android:layout_width="42dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="14dp"
+                            android:drawableBottom="@drawable/ic_today_black_24dp"
+                            android:drawableTint="@color/colorWhite"
+                            android:theme="@style/StyleButton" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
-                    android:hint="Hora Inicio"
-                    android:textColorHint="@color/colorBlack">
+                    android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/hinicio_id"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:backgroundTint="@color/colorBlack"
-                        android:inputType="time"
-                        android:textColor="@android:color/black" />
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputLayout
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="304dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:hint="Hora Inicio"
+                            android:textColorHint="@color/colorBlack">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/hinicio_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginTop="2dp"
+                                android:backgroundTint="@color/colorBlack"
+                                android:inputType="text"
+                                android:textColor="@android:color/black" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/btn_hora_inicio"
+                            android:layout_width="42dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="14dp"
+                            android:drawableBottom="@drawable/ic_timer_black_24dp"
+                            android:drawableTint="@color/colorWhite"
+                            android:theme="@style/StyleButton" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
-                    android:hint="Hora Fin"
-                    android:textColorHint="@color/colorBlack">
+                    android:orientation="horizontal">
 
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/hfin_id"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:backgroundTint="@color/colorBlack"
-                        android:inputType="time"
-                        android:textColor="@android:color/black" />
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="304dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="13dp"
+                            android:hint="Hora Fin"
+                            android:textColorHint="@color/colorBlack">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/hfin_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginTop="2dp"
+                                android:backgroundTint="@color/colorBlack"
+                                android:inputType="text"
+                                android:textColor="@android:color/black" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/btn_hora_fin"
+                            android:layout_width="42dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="14dp"
+                            android:drawableBottom="@drawable/ic_timer_off"
+                            android:drawableTint="@color/colorWhite"
+                            android:theme="@style/StyleButton" />
+                    </RelativeLayout>
+
+                </LinearLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -132,7 +203,7 @@
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
                         android:backgroundTint="@color/colorBlack"
-                        android:inputType="textCapWords|textPersonName"
+                        android:inputType="text"
                         android:textColor="@android:color/black" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -150,9 +221,24 @@
                         android:layout_marginBottom="2dp"
                         android:layout_marginTop="2dp"
                         android:backgroundTint="@color/colorBlack"
-                        android:inputType="textCapWords|textPersonName"
+                        android:inputType="text"
                         android:textColor="@android:color/black" />
                 </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:paddingTop="5dp"
+                    android:text="Semanas"
+                    android:inputType="text"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"/>
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
 
                 <Button
                     android:id="@+id/btnagregar"

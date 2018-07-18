@@ -1,5 +1,7 @@
 package com.practicavolley.ennovic.sportscontrol;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +10,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -26,12 +30,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class EntrenoProgramado extends AppCompatActivity {
 
     //Entreno programado
+
+    Button btnfecha, btnhorainicio, btnhorafin;
+    EditText efecha,ehora, fhora;
+    private  int dia,mes,ano,hora,minutos;
 
     EditText nombre,fecha,hinicio,hfin,lugar,descripcion;
     Button agregar;
@@ -45,15 +54,43 @@ public class EntrenoProgramado extends AppCompatActivity {
         setContentView(R.layout.activity_entreno_programado);
 
         nombre=(EditText) findViewById(R.id.nombre_id);
-        fecha=(EditText) findViewById(R.id.fecha_id);
+       /* fecha=(EditText) findViewById(R.id.fecha_id);
         hinicio=(EditText) findViewById(R.id.hinicio_id);
-        hfin=(EditText) findViewById(R.id.hfin_id);
+        hfin=(EditText) findViewById(R.id.hfin_id);*/
         lugar=(EditText) findViewById(R.id.lugar_id);
 
         descripcion=(EditText) findViewById(R.id.descripcion_id);
         agregar=(Button) findViewById(R.id.btnagregar);
 
         spinner = (Spinner) findViewById(R.id.spinner);
+
+        //HORA Y FECHA
+        btnfecha=(Button)findViewById(R.id.btn_fecha);
+        btnhorainicio=(Button)findViewById(R.id.btn_hora_inicio);
+        btnhorafin=(Button)findViewById(R.id.btn_hora_fin);
+        fecha=(EditText)findViewById(R.id.fecha_id);
+        hinicio=(EditText)findViewById(R.id.hinicio_id);
+        hfin=(EditText)findViewById(R.id.hfin_id);
+
+        btnfecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fecha();
+            }
+        });
+        btnhorainicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                horaInicio();
+            }
+        });
+
+        btnhorafin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                horaFin();
+            }
+        });
 
         this.datoscheck();
 
@@ -62,10 +99,60 @@ public class EntrenoProgramado extends AppCompatActivity {
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(EntrenoProgramado.this, "Registro exitoso...",Toast.LENGTH_LONG).show();
                 registrar();
+
             }
         });
 
+
+
+    }
+
+    public void fecha(){
+        final Calendar c= Calendar.getInstance();
+
+        dia=c.get(Calendar.DAY_OF_MONTH);
+        mes=c.get(Calendar.MONTH);
+        ano=c.get(Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                fecha.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
+            }
+        }
+                ,dia,mes,ano);
+        datePickerDialog.show();
+    }
+
+    public void horaInicio(){
+        final Calendar c= Calendar.getInstance();
+        hora=c.get(Calendar.HOUR_OF_DAY);
+        minutos=c.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                hinicio.setText(hourOfDay+":"+minute);
+            }
+        },hora,minutos,false);
+        timePickerDialog.show();
+    }
+
+    public void horaFin(){
+        final Calendar c= Calendar.getInstance();
+        hora=c.get(Calendar.HOUR_OF_DAY);
+        minutos=c.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                hfin.setText(hourOfDay+":"+minute);
+            }
+        },hora,minutos,false);
+        timePickerDialog.show();
     }
 
     public void registrar(){
@@ -83,6 +170,7 @@ public class EntrenoProgramado extends AppCompatActivity {
                         Toast.makeText(EntrenoProgramado.this, "error", Toast.LENGTH_SHORT).show();
                     }else{
 
+                        Toast.makeText(EntrenoProgramado.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
                         Intent intent =new Intent(EntrenoProgramado.this, HomeActivity.class);
                         startActivity(intent);
                     }
@@ -90,6 +178,8 @@ public class EntrenoProgramado extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+
 
             }
         }, new Response.ErrorListener() {

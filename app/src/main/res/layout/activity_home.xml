@@ -86,7 +86,7 @@
                     android:orientation="horizontal"
                     android:weightSum="3">
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:id="@+id/btn_athletes"
                         android:layout_width="191dp"
                         android:layout_height="200dp"
@@ -109,6 +109,34 @@
                             android:gravity="center_vertical"
                             android:padding="8dp"
                             android:text="Atletas"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="22sp" />
+                    </LinearLayout>-->
+
+                    <LinearLayout
+                        android:id="@+id/btn_timer"
+                        android:layout_width="191dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:src="@drawable/ic_timer_black_72dp"
+                            android:tint="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:padding="8dp"
+                            android:text="Inciar Entreno"
                             android:textAlignment="center"
                             android:textColor="@color/colorWhite"
                             android:textSize="22sp" />
@@ -284,7 +312,7 @@
                 </LinearLayout>
 
 
-                <LinearLayout
+            <!--    <LinearLayout
                     android:id="@+id/btn_timer"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
@@ -309,7 +337,7 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="18sp" />
 
-                </LinearLayout>
+                </LinearLayout> -->
 
             </LinearLayout>
 

@@ -73,6 +73,9 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setNombre(objResultado.getJSONObject("datos").optString("nombre"));
                                 user.setRole(objResultado.getJSONObject("datos").optString("role"));
                                 Intent intent= new Intent(LoginActivity.this,HomeActivity.class);
+                                intent.putExtra("id", user.getId());
+                                intent.putExtra("nombre", user.getNombre());
+                                intent.putExtra("role", user.getRole());
                                 intent.putExtra("DATOS_USER",user);
                                 startActivity(intent);
                             }
@@ -85,6 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(LoginActivity.this,"NO REGISTRA CONEXIÓN A DATOS O WIFI",Toast.LENGTH_LONG).show();
 
             }
         }){

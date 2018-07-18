@@ -45,7 +45,7 @@ public class AdaptadorDeportes extends RecyclerView.Adapter<AdaptadorDeportes.Vi
     @Override
     public void onBindViewHolder(ViewHolderDeportes holder, int position) {
        //holder.etiqueta_iddeporte.setText(listaDeportes.get(position).getIddeporte());
-        holder.etiqueta_deporte.setText(listaDeportes.get(position).getNombredeporte());
+        holder.etiqueta_deporte.setText(listaDeportes.get(position).getNombredeporte().toUpperCase());
         holder.etiqueta_foto.setImageResource(listaDeportes.get(position).getFoto());
     }
 

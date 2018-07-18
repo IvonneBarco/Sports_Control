@@ -20,14 +20,15 @@
         </activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".AthletesActivity"/>
+        <activity android:name=".AthletesActivity" />
         <activity android:name=".Deportes" />
         <activity android:name=".Ligas" />
         <activity android:name=".Entrenadores" />
-        <activity android:name=".Atletas"/>
-        <activity android:name=".InicioEntrenamiento"/>
-        <activity android:name=".EntrenoProgramado"/>
-         <activity android:name=".PlanSemanal"></activity>
+        <activity android:name=".Atletas" />
+        <activity android:name=".InicioEntrenamiento" />
+        <activity android:name=".EntrenoProgramado" />
+        <activity android:name=".PlanSemanal" />
+        <activity android:name=".SportsActivity"></activity>
     </application>
 
 </manifest>

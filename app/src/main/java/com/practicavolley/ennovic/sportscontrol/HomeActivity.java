@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        athletes = findViewById(R.id.btn_athletes);
+        //athletes = findViewById(R.id.btn_athletes);
         group = findViewById(R.id.btn_group);
         training = findViewById(R.id.btn_training);
         sports = findViewById(R.id.btn_sports);
@@ -36,14 +36,14 @@ public class HomeActivity extends AppCompatActivity {
         settings = findViewById(R.id.btn_settings);
         time = findViewById(R.id.btn_timer);
 
-        athletes.setOnClickListener(new View.OnClickListener() {
+        /*athletes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(HomeActivity.this, "Atletas", Toast.LENGTH_SHORT).show();
                 //Intent intent = new Intent(HomeActivity.this, Atletas.class);
                 //startActivity(intent);
             }
-        });
+        });*/
 
         sports.setOnClickListener(new View.OnClickListener() {
             @Override
