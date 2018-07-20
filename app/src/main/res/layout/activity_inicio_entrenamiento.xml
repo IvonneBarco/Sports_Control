@@ -73,8 +73,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/Descripción"
                     android:inputType="text"
-                    android:maxLines="5"
-                    android:singleLine="true" />
+                    android:maxLines="5"/>
 
             </android.support.design.widget.TextInputLayout>
 
