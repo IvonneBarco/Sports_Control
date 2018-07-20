@@ -45,8 +45,6 @@ import java.util.Map;
 
 public class InicioEntrenamiento extends AppCompatActivity {
 
-    private Usuario user;
-
     //Entreno iniciar
     EditText descripcion;
     Button iniciar, actualizar, parar;
@@ -59,6 +57,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
 
     //gps
     TextView latitud, longitud;
+    private String gpsrp, gpsfin;
     EditText e_latitud, e_longitud;
     LocationManager locationManager;
     LocationListener locationListener;
@@ -68,7 +67,6 @@ public class InicioEntrenamiento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_entrenamiento);
-
 
 
         descripcion = (EditText) findViewById(R.id.descripcion_id);
@@ -113,7 +111,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(InicioEntrenamiento.this, "ACTUALIZANDO...", Toast.LENGTH_LONG).show();
 
-                for (Integer marcados : chekedList) {
+                /*for (Integer marcados : chekedList) {
                     boolean estado = false;
                     for (Integer reco : chekedguardList) {
                         if (marcados == reco) {
@@ -128,9 +126,9 @@ public class InicioEntrenamiento extends AppCompatActivity {
 
                     }
 
-                }
+                }*/
 
-
+                actualizarentreno();
             }
         });
 
@@ -319,11 +317,30 @@ public class InicioEntrenamiento extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("id", identificador);
-
+                params.put("gps2", e_latitud.getText().toString());
                 return params;
             }
         };
         queue.add(stringRequest);
+    }
+
+    public void actualizarentreno() {
+        for (Integer marcados : chekedList) {
+            boolean estado = false;
+            for (Integer reco : chekedguardList) {
+                if (marcados == reco) {
+                    estado = true;
+
+                }
+            }
+            if (!estado) {
+                String cadena = marcados + "";
+                registrarAthletas(tmp, cadena);
+                chekedguardList.add(marcados);
+
+            }
+
+        }
     }
 
     public void datoscheck() {
@@ -455,6 +472,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
 
     }
 
+    //gps
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -475,6 +493,8 @@ public class InicioEntrenamiento extends AppCompatActivity {
         //latitud.setText("Latitud: " + Double.toString(location.getLatitude()));
         //longitud.setText("Longitud: " + Double.toString(location.getLongitude()));
         e_latitud.setText("" + Double.toString(location.getLatitude()) + " , " + "" + Double.toString(location.getLongitude()));
+        gpsrp = ("" + Double.toString(location.getLatitude()) + " , " + "" + Double.toString(location.getLongitude()));
+        gpsfin = ("" + Double.toString(location.getLatitude()) + " , " + "" + Double.toString(location.getLongitude()));
         //latitud.setText("Latitud: " + Double.toString(location.getLatitude()) + " - " + "Longitud: " + Double.toString(location.getLongitude()));
         //e_longitud.setText("Longitud: " + Double.toString(location.getLongitude()));
 

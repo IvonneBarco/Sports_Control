@@ -10,6 +10,8 @@ public class Entreno implements Parcelable {
     private String hinicio;
     private String hfin;
     private String gps;
+    private String gpsrp;
+    private String gpsfin;
     private String entrenop;
     private String descripcion;
 
@@ -53,6 +55,22 @@ public class Entreno implements Parcelable {
         this.gps = gps;
     }
 
+    public String getGpsrp() {
+        return gpsrp;
+    }
+
+    public void setGpsrp(String gpsrp) {
+        this.gpsrp = gpsrp;
+    }
+
+    public String getGpsfin() {
+        return gpsfin;
+    }
+
+    public void setGpsfin(String gpsfin) {
+        this.gpsfin = gpsfin;
+    }
+
     public String getEntrenop() {
         return entrenop;
     }
@@ -73,7 +91,7 @@ public class Entreno implements Parcelable {
         return CREATOR;
     }
 
-    public Entreno(){
+    public Entreno() {
 
     }
 
@@ -83,6 +101,8 @@ public class Entreno implements Parcelable {
         setHinicio(in.readString());
         setHfin(in.readString());
         setGps(in.readString());
+        setGpsrp(in.readString());
+        setGpsfin(in.readString());
         setEntrenop(in.readString());
         setDescripcion(in.readString());
     }
@@ -112,8 +132,9 @@ public class Entreno implements Parcelable {
         dest.writeString(getHinicio());
         dest.writeString(getHfin());
         dest.writeString(getGps());
+        dest.writeString(getGpsrp());
+        dest.writeString(getGpsfin());
         dest.writeString(getEntrenop());
         dest.writeString(getDescripcion());
     }
-
 }
