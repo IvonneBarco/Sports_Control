@@ -114,8 +114,8 @@ public class EntrenoProgramado extends AppCompatActivity {
         final Calendar c= Calendar.getInstance();
 
         dia=c.get(Calendar.DAY_OF_MONTH);
-        mes=c.get(Calendar.DAY_OF_MONTH);
-        ano=c.get(Calendar.DAY_OF_YEAR);
+        mes=c.get(Calendar.MONTH);
+        ano=c.get(Calendar.WEEK_OF_YEAR);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override

@@ -8,13 +8,15 @@
     tools:context=".InicioEntrenamiento">
 
 
+
+
     <ProgressBar
         android:id="@+id/home_progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+        android:visibility="gone" />-->
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -48,17 +50,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Selecionar Entrenamiento" />
+                android:text="Selecionar Entrenamiento"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"/>
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"/>
 
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:theme="@style/EditTextBlack">
 
                 <EditText
@@ -69,6 +75,23 @@
                     android:inputType="text"
                     android:maxLines="5"
                     android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:theme="@style/EditTextBlack">
+
+                <EditText
+                    android:id="@+id/e_latitud_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ubicación del Entrenamiento"
+                    android:inputType="text"
+                    android:enabled="false"/>
 
             </android.support.design.widget.TextInputLayout>
 
