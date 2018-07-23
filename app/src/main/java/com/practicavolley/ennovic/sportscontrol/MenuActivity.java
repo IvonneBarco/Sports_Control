@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.practicavolley.ennovic.sportscontrol.Vistas.EntrenoProgramadoFragment;
+import com.practicavolley.ennovic.sportscontrol.Vistas.HomeFragment;
+import com.practicavolley.ennovic.sportscontrol.Vistas.InicioEntrenamientoFragment;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -24,6 +26,8 @@ public class MenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -45,8 +49,8 @@ public class MenuActivity extends AppCompatActivity
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new EntrenoProgramadoFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_camera);
+                    new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
         }
     }
 
@@ -85,22 +89,29 @@ public class MenuActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();
+        } else if (id == R.id.nav_training_start) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new InicioEntrenamientoFragment()).commit();
+        } else if (id == R.id.nav_group) {
+
+        } else if (id == R.id.nav_training) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new EntrenoProgramadoFragment()).commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_sports) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_plans) {
 
-        } else if (id == R.id.nav_manage) {
+        }else if (id == R.id.nav_settings) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        }else if (id == R.id.nav_exit) {
 
         }
 

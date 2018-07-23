@@ -5,31 +5,39 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="Inicio" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_training_start"
             android:icon="@drawable/ic_timer_black_24dp"
             android:title="Iniciar Entrenamiento" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_group"
+            android:icon="@drawable/ic_group"
+            android:title="Grupo de Apoyo" />
+        <item
+            android:id="@+id/nav_training"
             android:icon="@drawable/ic_training"
             android:title="Entrenamiento Programado" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_sports"
             android:icon="@drawable/ic_sports"
             android:title="Deportes" />
+        <item
+            android:id="@+id/nav_plans"
+            android:icon="@drawable/ic_sesion"
+            android:title="Cargar Planes" />
     </group>
 
     <item android:title="Mi cuenta">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings"
                 android:title="Configuraciones" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_exit"
                 android:icon="@drawable/ic_exit"
                 android:title="Salir" />
         </menu>

@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
+import com.practicavolley.ennovic.sportscontrol.Vistas.HomeFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,12 +73,13 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setUsername(objResultado.getJSONObject("datos").optString("username"));
                                 user.setNombre(objResultado.getJSONObject("datos").optString("nombre"));
                                 user.setRole(objResultado.getJSONObject("datos").optString("role"));
-                                Intent intent= new Intent(LoginActivity.this, MenuActivity.class);
+                                Intent intent= new Intent(LoginActivity.this, HomeActivity.class);
                                 intent.putExtra("id", user.getId());
                                 intent.putExtra("nombre", user.getNombre());
                                 intent.putExtra("role", user.getRole());
                                 intent.putExtra("DATOS_USER",user);
                                 startActivity(intent);
+
                             }
 
                         } catch (JSONException e) {
