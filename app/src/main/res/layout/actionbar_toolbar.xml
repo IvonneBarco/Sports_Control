@@ -16,18 +16,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <!--<ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_menu_icon"
                 android:tint="@color/colorWhite"
-                android:layout_gravity="center|center_horizontal"/>
+                android:layout_gravity="center|center_horizontal"/>-->
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="234dp"
                 android:layout_height="55dp"
-                android:src="@drawable/logo_toolbar"
-                android:layout_gravity="center|center_horizontal"/>
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/logo_toolbar" />
         </RelativeLayout>
 
 

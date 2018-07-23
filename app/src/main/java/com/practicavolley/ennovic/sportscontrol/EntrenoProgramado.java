@@ -120,7 +120,8 @@ public class EntrenoProgramado extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                fecha.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
+                //fecha.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
+                fecha.setText(year+"/"+(monthOfYear+1)+"/"+dayOfMonth);
             }
         }
                 ,dia,mes,ano);
