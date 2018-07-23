@@ -30,7 +30,11 @@
         <activity android:name=".InicioEntrenamiento" />
         <activity android:name=".EntrenoProgramado" />
         <activity android:name=".PlanSemanal" />
-        <activity android:name=".SportsActivity" ></activity>
+        <activity android:name=".SportsActivity" />
+        <activity
+            android:name=".MenuActivity"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
