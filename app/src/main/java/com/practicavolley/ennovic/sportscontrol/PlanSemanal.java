@@ -51,7 +51,7 @@ public class PlanSemanal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_semanal);
 
-        btnBuscar = (Button) findViewById(R.id.btnBuscar);
+       /* btnBuscar = (Button) findViewById(R.id.btnBuscar);
         btnSubir = (Button) findViewById(R.id.btnSubir);
 
         editTextName = (EditText) findViewById(R.id.editText);
@@ -74,9 +74,9 @@ public class PlanSemanal extends AppCompatActivity {
             public void onClick(View view) {
                 uploadImage();
             }
-        });
+        });*/
     }
-
+/*
     public String getStringImagen(Bitmap bmp){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -162,5 +162,5 @@ public class PlanSemanal extends AppCompatActivity {
             }
         }
     }
-
+*/
 }

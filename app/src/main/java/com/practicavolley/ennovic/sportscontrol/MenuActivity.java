@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.practicavolley.ennovic.sportscontrol.Vistas.EntrenoProgramadoFragment;
+
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -40,6 +42,12 @@ public class MenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new EntrenoProgramadoFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_camera);
+        }
     }
 
     @Override
@@ -82,6 +90,8 @@ public class MenuActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new EntrenoProgramadoFragment()).commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
