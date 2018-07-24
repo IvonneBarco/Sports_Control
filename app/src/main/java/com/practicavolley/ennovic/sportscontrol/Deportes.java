@@ -104,8 +104,7 @@ public class Deportes extends AppCompatActivity {
                                 adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Toast.makeText(getApplicationContext(), "" +
-                                                listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getNombredeporte(), Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(getApplicationContext(), "" + listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getNombredeporte(), Toast.LENGTH_SHORT).show();
 
                                         //Envio de variables DATOS_USER
                                         Intent intentd = new Intent(Deportes.this, Ligas.class);

@@ -86,6 +86,13 @@
                 android:text="NOMBRE COMPLETO"
                 android:textSize="15sp"
                 android:textStyle="bold|normal" />
+            <TextView
+                android:id="@+id/id_apellido_entrenadores_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APELLIDO COMPLETO"
+                android:textSize="15sp"
+                android:textStyle="bold|normal" />
 
             <TextView
                 android:id="@+id/id_entrenadores_list"

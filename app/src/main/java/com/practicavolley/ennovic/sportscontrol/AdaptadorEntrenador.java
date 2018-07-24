@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.practicavolley.ennovic.sportscontrol.Modelos.DeportesVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.EntrenadoresVo;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class AdaptadorEntrenador extends RecyclerView.Adapter<AdaptadorEntrenado
             super(itemView);
             //etiqueta_identrenador = (TextView)itemView.findViewById(R.id.id_entrenadores_list);
             etiqueta_nombre_entrenador = (TextView)itemView.findViewById(R.id.id_nombre_entrenadores_list);
-            //etiqueta_apellido_entrenador = (TextView)itemView.findViewById(R.id.id_apellido_entrenadores_list);
+            etiqueta_apellido_entrenador = (TextView)itemView.findViewById(R.id.id_apellido_entrenadores_list);
             etiqueta_foto = (ImageView)itemView.findViewById(R.id.id_imagen_entrenadores_list);
         }
     }
@@ -45,8 +46,9 @@ public class AdaptadorEntrenador extends RecyclerView.Adapter<AdaptadorEntrenado
     @Override
     public void onBindViewHolder(AdaptadorEntrenador.ViewHolderEntrenadores holder, int position) {
         //holder.etiqueta_identrenador.setText(listaEntrenadores.get(position).getIdentrenador());
-        holder.etiqueta_nombre_entrenador.setText(listaEntrenadores.get(position).getNombreentrenador().toUpperCase() + " " + listaEntrenadores.get(position).getApellidoentrenador().toUpperCase());
-        //holder.etiqueta_apellido_entrenador.setText(listaEntrenadores.get(position).getApellidoentrenador());
+        //holder.etiqueta_nombre_entrenador.setText(listaEntrenadores.get(position).getNombreentrenador().toUpperCase() + " " + listaEntrenadores.get(position).getApellidoentrenador().toUpperCase());
+        holder.etiqueta_nombre_entrenador.setText(listaEntrenadores.get(position).getNombreentrenador());
+        holder.etiqueta_apellido_entrenador.setText(listaEntrenadores.get(position).getApellidoentrenador());
         holder.etiqueta_foto.setImageResource(listaEntrenadores.get(position).getFoto());
     }
 

@@ -103,8 +103,7 @@ public class Ligas extends AppCompatActivity {
                                 adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Toast.makeText(getApplicationContext(), "" +
-                                                listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getNombreliga(), Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(getApplicationContext(), "" + listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getNombreliga(), Toast.LENGTH_SHORT).show();
                                         if (user.getRole().equalsIgnoreCase("admin")){
                                             //Envio de variables DATOS_USER
                                             Intent intentd = new Intent(Ligas.this, Entrenadores.class);
