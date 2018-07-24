@@ -3,8 +3,10 @@ package com.practicavolley.ennovic.sportscontrol.Vistas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,11 +123,15 @@ public class DeportesFragment extends Fragment {
                                         //Toast.makeText(getApplicationContext(), "" + listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getNombredeporte(), Toast.LENGTH_SHORT).show();
 
                                         //Envio de variables DATOS_USER
-                                        Intent intentd = new Intent(getActivity(), Ligas.class);
+                                        /*Intent intentd = new Intent(getActivity(), LigasFragment.class);
                                         intentd.putExtra("DATOS_USER", user);
                                         //Envio variable iddeporte
                                         intentd.putExtra("iddeporte", listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getIddeporte());
-                                        startActivity(intentd);
+                                        startActivity(intentd);*/
+                                        Bundle args = new Bundle();
+                                        args.putString("iddeporte", listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getIddeporte());
+                                        FragmentManager fragmentManager = getFragmentManager();
+                                        fragmentManager.beginTransaction().replace(R.id.fragment_container, new LigasFragment()).commit();
 
                                     }
                                 });
