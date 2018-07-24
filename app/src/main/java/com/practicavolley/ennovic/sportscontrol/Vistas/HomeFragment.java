@@ -132,12 +132,12 @@ public class HomeFragment extends Fragment {
         });
 
         //Bundle bundle = getIntent().getExtras();
-        Bundle bundle = getActivity().getIntent().getExtras();
+        /*Bundle bundle = getActivity().getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
         user.getId();
         ((TextView) view.findViewById(R.id.nom_usuario_home)).setText("¡HOLA " + user.getNombre().toUpperCase() + "!");
         user.getUsername();
-        ((TextView) view.findViewById(R.id.role_usuario_home)).setText(user.getRole().toUpperCase());
+        ((TextView) view.findViewById(R.id.role_usuario_home)).setText(user.getRole().toUpperCase());*/
 
 
         return view;

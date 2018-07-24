@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
+import com.practicavolley.ennovic.sportscontrol.Vistas.EntrenoProgramadoFragment;
 import com.practicavolley.ennovic.sportscontrol.Vistas.HomeFragment;
 
 import org.json.JSONException;
@@ -91,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(LoginActivity.this,"NO REGISTRA CONEXIÓN A DATOS O WIFI",Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,"NO HAY CONEXIÓN",Toast.LENGTH_LONG).show();
 
             }
         }){

@@ -1,9 +1,11 @@
 package com.practicavolley.ennovic.sportscontrol;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,8 +62,8 @@ public class Entrenadores extends AppCompatActivity {
 
         user.getId();
         user.getRole();
-        String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
-        String recuperamos_idliga = getIntent().getStringExtra("idliga");
+        final String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
+        final String recuperamos_idliga = getIntent().getStringExtra("idliga");
         // Fin * Recuperando variables usuario y deporte
 
         //Inicio * Recycler
@@ -104,6 +106,24 @@ public class Entrenadores extends AppCompatActivity {
 
                                 }
                                 AdaptadorEntrenador adapter = new AdaptadorEntrenador(listaEntrenadores);
+                                //evento click
+                                adapter.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        //Toast.makeText(getApplicationContext(), "" + listaEntrenadores.get(recyclerEntrenadores.getChildAdapterPosition(view)).getIdentrenador(), Toast.LENGTH_SHORT).show();
+
+                                        //Envio de variables DATOS_USER
+                                        Intent intentd = new Intent(Entrenadores.this, AtletasEntrenador.class);
+                                        intentd.putExtra("DATOS_USER", user);
+
+                                        //Envio variable iddeporte
+                                        intentd.putExtra("identrenador", listaEntrenadores.get(recyclerEntrenadores.getChildAdapterPosition(view)).getIdentrenador());
+                                        intentd.putExtra("liga", recuperamos_idliga);
+                                        startActivity(intentd);
+
+                                    }
+                                });
+                                //fin evento click
                                 recyclerEntrenadores.setAdapter(adapter);
                             }
                         } catch (JSONException e) {
