@@ -176,7 +176,6 @@ public class LigasFragment extends Fragment {
                 Map<String, String> params = new HashMap<>();
                 params.put("id", String.valueOf(user.getId()));
                 params.put("role", user.getRole());
-                //params.put("deporte",getActivity().getIntent().getStringExtra("iddeporte"));
                 params.put("deporte",recuperamos_iddeporte);
                 return params;
             }
