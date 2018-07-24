@@ -100,6 +100,7 @@ public class Entrenadores extends AppCompatActivity {
                                     coach.setIdentrenador(String.valueOf(objentrenadores.optInt("entrenadorid")));
                                     coach.setNombreentrenador(objentrenadores.optString("nombre"));
                                     coach.setApellidoentrenador(objentrenadores.optString("apellido"));
+                                    coach.setIdliga(objentrenadores.optString("idliga"));
                                     coach.setFoto(R.drawable.coach);
                                     listaEntrenadores.add(coach);
 

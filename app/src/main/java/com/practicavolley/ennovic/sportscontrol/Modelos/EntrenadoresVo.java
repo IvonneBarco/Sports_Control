@@ -5,13 +5,15 @@ public class EntrenadoresVo {
     private String identrenador;
     private String nombreentrenador;
     private String apellidoentrenador;
+    private String idliga;
     private int foto;
 
     //Constructor
-    public EntrenadoresVo(String identrenador, String nombreentrenador, String apellidoentrenador, int foto) {
+    public EntrenadoresVo(String identrenador, String nombreentrenador, String apellidoentrenador, String idliga, int foto) {
         this.identrenador = identrenador;
         this.nombreentrenador = nombreentrenador;
         this.apellidoentrenador = apellidoentrenador;
+        this.idliga = idliga;
         this.foto = foto;
     }
 
@@ -45,6 +47,14 @@ public class EntrenadoresVo {
 
     public void setFoto(int foto) {
         this.foto = foto;
+    }
+
+    public String getIdliga() {
+        return idliga;
+    }
+
+    public void setIdliga(String idliga) {
+        this.idliga = idliga;
     }
 
     public EntrenadoresVo() {

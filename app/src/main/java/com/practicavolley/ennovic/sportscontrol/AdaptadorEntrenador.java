@@ -31,14 +31,15 @@ public class AdaptadorEntrenador extends RecyclerView.Adapter<AdaptadorEntrenado
 
     public class ViewHolderEntrenadores extends RecyclerView.ViewHolder {
 
-        TextView etiqueta_identrenador, etiqueta_nombre_entrenador, etiqueta_apellido_entrenador ;
+        TextView etiqueta_identrenador, etiqueta_nombre_entrenador, etiqueta_apellido_entrenador, etiqueta_idliga ;
         ImageView etiqueta_foto;
 
         public ViewHolderEntrenadores(View itemView) {
             super(itemView);
-            //etiqueta_identrenador = (TextView)itemView.findViewById(R.id.id_entrenadores_list);
+            //etiqueta_identrenador = (TextView)itemView.findViewById(R.id.id_deporte_list);
             etiqueta_nombre_entrenador = (TextView)itemView.findViewById(R.id.id_nombre_entrenadores_list);
             etiqueta_apellido_entrenador = (TextView)itemView.findViewById(R.id.id_apellido_entrenadores_list);
+            etiqueta_idliga = (TextView)itemView.findViewById(R.id.id_liga_entrenadores_list);
             etiqueta_foto = (ImageView)itemView.findViewById(R.id.id_imagen_entrenadores_list);
         }
     }
@@ -49,6 +50,7 @@ public class AdaptadorEntrenador extends RecyclerView.Adapter<AdaptadorEntrenado
         //holder.etiqueta_nombre_entrenador.setText(listaEntrenadores.get(position).getNombreentrenador().toUpperCase() + " " + listaEntrenadores.get(position).getApellidoentrenador().toUpperCase());
         holder.etiqueta_nombre_entrenador.setText(listaEntrenadores.get(position).getNombreentrenador());
         holder.etiqueta_apellido_entrenador.setText(listaEntrenadores.get(position).getApellidoentrenador());
+        holder.etiqueta_idliga.setText("Liga deportiva" + listaEntrenadores.get(position).getIdliga());
         holder.etiqueta_foto.setImageResource(listaEntrenadores.get(position).getFoto());
     }
 
