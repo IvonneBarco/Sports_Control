@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorWhite"
     tools:context=".InicioEntrenamiento">
 
 
@@ -161,8 +162,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
+                android:orientation="vertical">
 
-                android:orientation="vertical"></LinearLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark" />
+
+            </LinearLayout>
 
         </ScrollView>
     </LinearLayout>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".Deportes">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Vistas.DeportesFragment">
+
+    <!-- TODO: Update blank fragment layout -->
 
     <ProgressBar
         android:id="@+id/home_progress"
@@ -23,7 +25,6 @@
         app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="right|center">
 
-        <include layout="@layout/actionbar_toolbar_main" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -50,22 +51,8 @@
                         android:textStyle="bold|normal" />
 
 
-                    <!--<TextView
-                        android:id="@+id/roleSesion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ROLE:  " />
-
-
-                    <TextView
-                        android:id="@+id/idSesion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ID" />-->
-
-
                     <android.support.v7.widget.RecyclerView
-                        android:id="@+id/RecyclerId"
+                        android:id="@+id/Recycler_Deportes_Id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -73,6 +60,5 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
 
-
+</FrameLayout>

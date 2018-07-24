@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.practicavolley.ennovic.sportscontrol.Vistas.DeportesFragment;
 import com.practicavolley.ennovic.sportscontrol.Vistas.EntrenoProgramadoFragment;
 import com.practicavolley.ennovic.sportscontrol.Vistas.HomeFragment;
 import com.practicavolley.ennovic.sportscontrol.Vistas.InicioEntrenamientoFragment;
@@ -106,6 +107,8 @@ public class MenuActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new EntrenoProgramadoFragment()).commit();
         } else if (id == R.id.nav_sports) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new DeportesFragment()).commit();
 
         } else if (id == R.id.nav_plans) {
 

@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setUsername(objResultado.getJSONObject("datos").optString("username"));
                                 user.setNombre(objResultado.getJSONObject("datos").optString("nombre"));
                                 user.setRole(objResultado.getJSONObject("datos").optString("role"));
-                                Intent intent= new Intent(LoginActivity.this, HomeActivity.class);
+                                Intent intent= new Intent(LoginActivity.this, MenuActivity.class);
                                 intent.putExtra("id", user.getId());
                                 intent.putExtra("nombre", user.getNombre());
                                 intent.putExtra("role", user.getRole());

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
     private LinearLayout athletes, group, training, sports, plans, settings, time;
     TextView nombreUsuario, rolUsuario, listarUsuario;
     private Usuario user;
+
     View view;
 
     public HomeFragment() {
@@ -75,9 +77,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Deportes", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), Deportes.class);
+                /*Intent intent = new Intent(getActivity(), Deportes.class);
                 intent.putExtra("DATOS_USER", user);
-                startActivity(intent);
+                startActivity(intent);*/
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, new DeportesFragment()).commit();
             }
         });
 
@@ -85,9 +89,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Grupo de apoyo", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(getActivity(), Deportes.class);
+                Intent intent = new Intent(getActivity(), Deportes.class);
                 intent.putExtra("DATOS_USER", user);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
 
@@ -95,9 +99,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Entrenamiento", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), EntrenoProgramado.class);
+                /*Intent intent = new Intent(getActivity(), EntrenoProgramado.class);
                 //intent.putExtra("DATOS_USER", user);
-                startActivity(intent);
+                startActivity(intent);*/
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, new EntrenoProgramadoFragment()).commit();
             }
         });
 
@@ -125,19 +131,21 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Iniciar entrenamiento", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), InicioEntrenamiento.class);
+                /*Intent intent = new Intent(getActivity(), InicioEntrenamiento.class);
                 //intent.putExtra("DATOS_USER", user);
-                startActivity(intent);
+                startActivity(intent);*/
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, new InicioEntrenamientoFragment()).commit();
             }
         });
 
         //Bundle bundle = getIntent().getExtras();
-        /*Bundle bundle = getActivity().getIntent().getExtras();
+        Bundle bundle = getActivity().getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
         user.getId();
         ((TextView) view.findViewById(R.id.nom_usuario_home)).setText("¡HOLA " + user.getNombre().toUpperCase() + "!");
         user.getUsername();
-        ((TextView) view.findViewById(R.id.role_usuario_home)).setText(user.getRole().toUpperCase());*/
+        ((TextView) view.findViewById(R.id.role_usuario_home)).setText(user.getRole().toUpperCase());
 
 
         return view;
