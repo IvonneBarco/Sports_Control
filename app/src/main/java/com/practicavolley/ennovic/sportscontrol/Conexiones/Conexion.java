@@ -6,7 +6,7 @@ package com.practicavolley.ennovic.sportscontrol.Conexiones;
 
 public class Conexion {
     //public static final String URL_WEB_SERVICES ="http://172.20.1.193/volley/web-services/";
-    //public static final String URL_WEB_SERVICES ="http://www.iucesmag.edu.co/celular/vista/";
-    public static final String URL_WEB_SERVICES ="http://www.guialistas.com.br/celular/vista/";
+    public static final String URL_WEB_SERVICES ="http://www.iucesmag.edu.co/celular/vista/";
+    //public static final String URL_WEB_SERVICES ="http://www.guialistas.com.br/celular/vista/";
 
 }

@@ -317,7 +317,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("id", identificador);
-                params.put("gps2", e_latitud.getText().toString());
+                //params.put("gps2", e_latitud.getText().toString());
                 return params;
             }
         };

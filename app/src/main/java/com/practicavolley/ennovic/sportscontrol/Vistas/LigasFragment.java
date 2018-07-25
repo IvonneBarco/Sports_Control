@@ -44,7 +44,7 @@ public class LigasFragment extends Fragment {
 
     private Usuario user;
     private DeportesVo sport;
-    private String nomdeporte, iddeporte;
+    private String recuperamos_iddeporte, iddeporte;
 
     //RECYCLER
     ArrayList<LigasVo> listaLigas;
@@ -77,8 +77,8 @@ public class LigasFragment extends Fragment {
         /*((TextView) findViewById(R.id.idSesion)).setText("ID USUARIO: " + user.getId());
         ((TextView) findViewById(R.id.roleSesion)).setText("ROL: " + user.getRole());*/
 
-        //final String recuperamos_iddeporte = getActivity().getIntent().getStringExtra("iddeporte");
-        final String recuperamos_iddeporte = getArguments() != null ? getArguments().getString("iddeporte") : "1";
+        //final String recuperamos_iddeporte = getArguments().getString("iddeporte");
+        final String recuperamos_iddeporte = getArguments() != null ? getArguments().getString("iddeporte") : "0";
         Log.i("IDDEPORTE", "recuperamos_iddeporte" + recuperamos_iddeporte);
 
         //((TextView) findViewById(R.id.id_deporte)).setText("ID DEPORTE: " + recuperamos_iddeporte);
@@ -186,7 +186,7 @@ public class LigasFragment extends Fragment {
                 Map<String, String> params = new HashMap<>();
                 params.put("id", String.valueOf(user.getId()));
                 params.put("role", user.getRole());
-                params.put("deporte",recuperamos_iddeporte);
+                params.put("deporte","1");
                 return params;
             }
         };

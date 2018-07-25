@@ -70,7 +70,6 @@ public class DeportesFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_deportes, container, false);
 
         //Se recupera los datos del usuario que inicio sesión
-        //Bundle bundle = getIntent().getExtras();
         Bundle bundle = getActivity().getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
         user.getId();
@@ -120,16 +119,12 @@ public class DeportesFragment extends Fragment {
                                 adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        //Toast.makeText(getApplicationContext(), "" + listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getNombredeporte(), Toast.LENGTH_SHORT).show();
-
-                                        //Envio de variables DATOS_USER
-                                        /*Intent intentd = new Intent(getActivity(), LigasFragment.class);
-                                        intentd.putExtra("DATOS_USER", user);
-                                        //Envio variable iddeporte
-                                        intentd.putExtra("iddeporte", listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getIddeporte());
-                                        startActivity(intentd);*/
+                                        LigasFragment fragment = new LigasFragment();
+                                        //Toast.makeText(getActivity().getApplicationContext(), "" + listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getNombredeporte(), Toast.LENGTH_SHORT).show();
                                         Bundle args = new Bundle();
                                         args.putString("iddeporte", listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getIddeporte());
+                                        fragment.setArguments(args);
+                                        Log.i("DEPORTE: ", listaDeportes.get(recyclerDeportes.getChildAdapterPosition(view)).getIddeporte());
                                         FragmentManager fragmentManager = getFragmentManager();
                                         fragmentManager.beginTransaction().replace(R.id.fragment_container, new LigasFragment()).commit();
 

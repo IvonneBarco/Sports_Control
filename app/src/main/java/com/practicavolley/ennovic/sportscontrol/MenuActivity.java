@@ -1,5 +1,7 @@
 package com.practicavolley.ennovic.sportscontrol;
 
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -49,8 +51,10 @@ public class MenuActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
+            /*getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();*/
+            Intent intent = new Intent(MenuActivity.this.getBaseContext(), HomeActivity.class);
+            startActivity(intent);
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }
@@ -91,13 +95,16 @@ public class MenuActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
+            /*getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();*/
+            Intent intent = new Intent(MenuActivity.this.getBaseContext(), HomeActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_training_start) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new InicioEntrenamientoFragment()).commit();
