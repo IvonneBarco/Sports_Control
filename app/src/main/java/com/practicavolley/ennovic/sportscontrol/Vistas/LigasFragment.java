@@ -3,6 +3,7 @@ package com.practicavolley.ennovic.sportscontrol.Vistas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -60,7 +61,6 @@ public class LigasFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null){
-            iddeporte = getArguments().getString("iddeporte","1");
         }
 
     }
@@ -133,23 +133,33 @@ public class LigasFragment extends Fragment {
                                         //Toast.makeText(getApplicationContext(), "" + listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getNombreliga(), Toast.LENGTH_SHORT).show();
                                         if (user.getRole().equalsIgnoreCase("admin")){
                                             //Envio de variables DATOS_USER
-                                            Intent intentd = new Intent(getActivity(), Entrenadores.class);
+                                            /*Intent intentd = new Intent(getActivity(), Entrenadores.class);
                                             intentd.putExtra("DATOS_USER", user);
                                             //Envio variable iddeporte
                                             intentd.putExtra("idliga", listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getIdliga());
                                             intentd.putExtra("deporte", recuperamos_iddeporte);
                                             //intent.putExtra("role", user.getRole());
-                                            startActivity(intentd);
+                                            startActivity(intentd);*/
+                                            Bundle args = new Bundle();
+                                            args.putString("idliga", listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getIdliga());
+                                            args.putString("deporte", recuperamos_iddeporte);
+                                            FragmentManager fragmentManager = getFragmentManager();
+                                            fragmentManager.beginTransaction().replace(R.id.fragment_container, new EntrenadoresFragment()).commit();
                                         }else{
                                             if (user.getRole().equalsIgnoreCase("entrenador")){
                                                 //Envio de variables DATOS_USER
-                                                Intent intentd = new Intent(getActivity(), Atletas.class);
+                                                /*Intent intentd = new Intent(getActivity(), Atletas.class);
                                                 intentd.putExtra("DATOS_USER", user);
 
                                                 //Envio variable iddeporte
                                                 intentd.putExtra("idliga", listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getIdliga());
                                                 intentd.putExtra("deporte", recuperamos_iddeporte);
-                                                startActivity(intentd);
+                                                startActivity(intentd);*/
+                                                Bundle args = new Bundle();
+                                                args.putString("idliga", listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getIdliga());
+                                                args.putString("iddeporte", recuperamos_iddeporte);
+                                                FragmentManager fragmentManager = getFragmentManager();
+                                                fragmentManager.beginTransaction().replace(R.id.fragment_container, new AtletasFragment()).commit();
                                             }
                                         }
                                     }
