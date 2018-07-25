@@ -139,7 +139,7 @@ public class EntrenadoresFragment extends Fragment {
                                         args.putString("identrenador", listaEntrenadores.get(recyclerEntrenadores.getChildAdapterPosition(view)).getIdentrenador());
                                         args.putString("liga", recuperamos_idliga);
                                         FragmentManager fragmentManager = getFragmentManager();
-                                        fragmentManager.beginTransaction().replace(R.id.fragment_container, new AtletasFragment()).commit();
+                                        fragmentManager.beginTransaction().replace(R.id.fragment_container, new AtletasEntrenadorFragment()).commit();
 
                                     }
                                 });
