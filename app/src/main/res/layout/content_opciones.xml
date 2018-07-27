@@ -35,15 +35,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="164dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/nom_usuario_home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
                         android:padding="10dp"
+                        android:paddingTop="10dp"
                         android:text="Hola Usuario"
                         android:textAlignment="center"
                         android:textColor="@color/colorBlack"
@@ -113,7 +113,7 @@
                     </LinearLayout>-->
 
                     <LinearLayout
-                        android:id="@+id/btn_timer"
+                        android:id="@+id/btn_sports"
                         android:layout_width="191dp"
                         android:layout_height="200dp"
                         android:layout_weight="1"
@@ -125,7 +125,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
-                            android:src="@drawable/ic_timer_black_72dp"
+                            android:src="@drawable/ic_sports_72dp"
                             android:tint="@color/colorWhite" />
 
                         <TextView
@@ -134,7 +134,7 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center_vertical"
                             android:padding="8dp"
-                            android:text="Inciar Entreno"
+                            android:text="Deportes"
                             android:textAlignment="center"
                             android:textColor="@color/colorWhite"
                             android:textSize="22sp" />
@@ -210,7 +210,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/btn_sports"
+                        android:id="@+id/btn_settings"
                         android:layout_width="191dp"
                         android:layout_height="200dp"
                         android:layout_weight="1"
@@ -222,7 +222,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
-                            android:src="@drawable/ic_sports_72dp"
+                            android:src="@drawable/ic_settings_72dp"
                             android:tint="@color/colorWhite" />
 
                         <TextView
@@ -231,7 +231,7 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center_vertical"
                             android:padding="8dp"
-                            android:text="Deportes"
+                            android:text="Configuración"
                             android:textAlignment="center"
                             android:textColor="@color/colorWhite"
                             android:textSize="22sp" />
@@ -243,74 +243,9 @@
 
 
                 <!-- Second Row-->
+
+
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <LinearLayout
-                        android:id="@+id/btn_plans"
-                        android:layout_width="191dp"
-                        android:layout_height="200dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimary"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="40dp"
-                            android:src="@drawable/ic_sesions_72dp"
-                            android:tint="@color/colorWhite" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center_vertical"
-                            android:padding="8dp"
-                            android:text="Cargar Sesiones"
-                            android:textAlignment="center"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="22sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/btn_settings"
-                        android:layout_width="191dp"
-                        android:layout_height="200dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorWhite"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="40dp"
-                            android:src="@drawable/ic_settings_72dp"
-                            android:tint="@color/colorBlack" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center_vertical"
-                            android:padding="8dp"
-                            android:text="Configuración"
-                            android:textAlignment="center"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="22sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-                <!--    <LinearLayout
                         android:id="@+id/btn_timer"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
@@ -335,7 +270,7 @@
                             android:textColor="@color/colorWhite"
                             android:textSize="18sp" />
 
-                    </LinearLayout> -->
+                    </LinearLayout>
 
             </LinearLayout>
 

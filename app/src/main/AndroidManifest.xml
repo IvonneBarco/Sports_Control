@@ -31,10 +31,6 @@
         <activity android:name=".Actividades.PlanSemanal" />
         <activity android:name=".Actividades.AtletasEntrenador" />
         <activity
-            android:name=".Actividades.MenuActivity"
-            android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Actividades.OpcionesActivity"
             android:logo="@drawable/logo_sportscontrol"
             android:theme="@style/AppTheme"></activity>

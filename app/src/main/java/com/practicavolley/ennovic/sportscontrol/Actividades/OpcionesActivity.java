@@ -64,19 +64,10 @@ public class OpcionesActivity extends AppCompatActivity
         settings = findViewById(R.id.btn_settings);
         time = findViewById(R.id.btn_timer);
 
-        /*athletes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(HomeActivity.this, "Atletas", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(HomeActivity.this, Atletas.class);
-                //startActivity(intent);
-            }
-        });*/
-
         sports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(OpcionesActivity.this, "Deportes", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(OpcionesActivity.this, "Deportes", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(OpcionesActivity.this, Deportes.class);
                 intent.putExtra("DATOS_USER", user);
                 startActivity(intent);
@@ -96,22 +87,22 @@ public class OpcionesActivity extends AppCompatActivity
         training.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(OpcionesActivity.this, "Entrenamiento", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(OpcionesActivity.this, "Entrenamiento", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(OpcionesActivity.this, EntrenoProgramado.class);
                 //intent.putExtra("DATOS_USER", user);
                 startActivity(intent);
             }
         });
 
-        plans.setOnClickListener(new View.OnClickListener() {
+        /*plans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(OpcionesActivity.this, "Cargar Planes", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(HomeActivity.this, Deportes.class);
+                Intent intent = new Intent(HomeActivity.this, Deportes.class);
                 intent.putExtra("DATOS_USER", user);
-                startActivity(intent);*/
+                startActivity(intent);
             }
-        });
+        });*/
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +117,7 @@ public class OpcionesActivity extends AppCompatActivity
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(OpcionesActivity.this, "Iniciar entrenamiento", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(OpcionesActivity.this, "Iniciar entrenamiento", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(OpcionesActivity.this, InicioEntrenamiento.class);
                 //intent.putExtra("DATOS_USER", user);
                 startActivity(intent);
@@ -168,6 +159,8 @@ public class OpcionesActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            /*Intent intentStart = new Intent(OpcionesActivity.this.getBaseContext(), OpcionesActivity.class);
+            startActivity(intentStart);*/
             return true;
         }
 
@@ -186,16 +179,18 @@ public class OpcionesActivity extends AppCompatActivity
 
                 break;
             case R.id.nav_training:
-                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+                Intent intentTraining = new Intent(OpcionesActivity.this.getBaseContext(), EntrenoProgramado.class);
+                startActivity(intentTraining);
                 break;
             case R.id.nav_sports:
-                Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();
+                Intent intentSports = new Intent(OpcionesActivity.this.getBaseContext(), Deportes.class);
+                startActivity(intentSports);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Configuraciones", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_exit:
-                Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Salir", Toast.LENGTH_SHORT).show();
                 break;
         }
 
