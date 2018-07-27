@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlanSemanal">
+    tools:context=".Actividades.PlanSemanal">
 
     <ProgressBar
         android:id="@+id/home_progress"
@@ -22,7 +22,7 @@
         app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="right|center">
 
-        <include layout="@layout/actionbar_toolbar_main" />
+        <include layout="@layout/actionbar_toolbar" />
 
         <ScrollView
             android:layout_width="match_parent"

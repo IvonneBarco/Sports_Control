@@ -13,28 +13,31 @@
         android:roundIcon="@drawable/icono_sportscontrol"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Actividades.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".Deportes" />
-        <activity android:name=".Ligas" />
-        <activity android:name=".Entrenadores" />
-        <activity android:name=".Atletas" />
-        <activity android:name=".InicioEntrenamiento" />
-        <activity android:name=".EntrenoProgramado" />
-        <activity android:name=".PlanSemanal" />
-        <activity android:name=".SportsActivity" />
-        <activity android:name=".AtletasEntrenador"/>
+        <activity android:name=".Actividades.HomeActivity" />
+        <activity android:name=".Actividades.ProfileActivity" />
+        <activity android:name=".Actividades.Deportes" />
+        <activity android:name=".Actividades.Ligas" />
+        <activity android:name=".Actividades.Entrenadores" />
+        <activity android:name=".Actividades.Atletas" />
+        <activity android:name=".Actividades.InicioEntrenamiento" />
+        <activity android:name=".Actividades.EntrenoProgramado" />
+        <activity android:name=".Actividades.PlanSemanal" />
+        <activity android:name=".Actividades.AtletasEntrenador" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".Actividades.MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Actividades.OpcionesActivity"
+            android:logo="@drawable/logo_sportscontrol"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

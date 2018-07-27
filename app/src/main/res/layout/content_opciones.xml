@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    tools:context=".Actividades.HomeActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Actividades.OpcionesActivity"
+    tools:showIn="@layout/app_bar_opciones">
 
     <ProgressBar
         android:id="@+id/home_progress"
@@ -20,10 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="right|center">
-
-        <include layout="@layout/actionbar_toolbar" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -312,32 +310,32 @@
                 </LinearLayout>
 
 
-            <!--    <LinearLayout
-                    android:id="@+id/btn_timer"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_weight="0"
-                    android:background="@color/colorAccent"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
-                        android:src="@drawable/ic_timer_black_72dp"
-                        android:tint="@color/colorWhite" />
-
-                    <TextView
+                <!--    <LinearLayout
+                        android:id="@+id/btn_timer"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="8dp"
-                        android:text="Iniciar Entreno"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="18sp" />
+                        android:layout_height="150dp"
+                        android:layout_weight="0"
+                        android:background="@color/colorAccent"
+                        android:orientation="vertical">
 
-                </LinearLayout> -->
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="30dp"
+                            android:src="@drawable/ic_timer_black_72dp"
+                            android:tint="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="8dp"
+                            android:text="Iniciar Entreno"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="18sp" />
+
+                    </LinearLayout> -->
 
             </LinearLayout>
 
@@ -345,5 +343,4 @@
 
     </LinearLayout>
 
-
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>
