@@ -1,10 +1,13 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,6 +30,8 @@ public class OpcionesActivity extends AppCompatActivity
     private LinearLayout athletes, group, training, sports, plans, settings, time;
     TextView nombreUsuario, rolUsuario, listarUsuario;
     private Usuario user;
+
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,12 +129,12 @@ public class OpcionesActivity extends AppCompatActivity
             }
         });
 
-        Bundle bundle = getIntent().getExtras();
+        /*Bundle bundle = getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
         user.getId();
         ((TextView) findViewById(R.id.nom_usuario_home)).setText("¡HOLA " + user.getNombre().toUpperCase() + "!");
         user.getUsername();
-        ((TextView) findViewById(R.id.role_usuario_home)).setText(user.getRole().toUpperCase());
+        ((TextView) findViewById(R.id.role_usuario_home)).setText(user.getRole().toUpperCase());*/
         //////////////////////// HOME ///////////////////////////////////////
     }
 
@@ -159,8 +164,10 @@ public class OpcionesActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            /*Intent intentStart = new Intent(OpcionesActivity.this.getBaseContext(), OpcionesActivity.class);
-            startActivity(intentStart);*/
+            LoginActivity.cambiarEstadoSwitch(OpcionesActivity.this, false);
+            Intent i = new Intent(OpcionesActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
             return true;
         }
 
@@ -198,4 +205,5 @@ public class OpcionesActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
