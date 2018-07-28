@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Path;
+import android.preference.SwitchPreference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,15 +23,20 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
+import com.practicavolley.ennovic.sportscontrol.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
+import com.practicavolley.ennovic.sportscontrol.VolleyRP;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
+import java.time.chrono.JapaneseDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,12 +46,10 @@ public class LoginActivity extends AppCompatActivity {
     EditText contrasena;
     Button login;
     Switch switchRecordar;
-    //RadioButton switchRecordar;
+
     private boolean isActivateRadioButton;
-
-    private static final String STRING_PREFERENCES = "info.sportcontrol";
-    private static final String PREFERENCES_ESTADO_SWITCH = "estado.switch";
-
+    private VolleyRP volley;
+    private RequestQueue mrequestQueue;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -52,8 +57,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if (obtenerEstadoSwitch()){
-            Intent intent = new Intent(LoginActivity.this, OpcionesActivity.class);
+        //Inicializamos las variables
+        volley = VolleyRP.getInstance(this);
+        mrequestQueue = volley.getRequestQueue();
+
+        if (Preferences.obtenerPreferencesBoolean(LoginActivity.this, Preferences.PREFERENCES_ESTADO_SWITCH)) {
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         }
@@ -63,13 +72,12 @@ public class LoginActivity extends AppCompatActivity {
         login = (Button) findViewById(R.id.btnIniciarSesion);
         switchRecordar = (Switch) findViewById(R.id.switchRecordar);
 
-        //switchRecordar = (RadioButton) findViewById(R.id.switchRecordar);
         isActivateRadioButton = switchRecordar.isChecked();//Desactivado
 
         switchRecordar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isActivateRadioButton){
+                if (isActivateRadioButton) {
                     switchRecordar.setChecked(false);
                 }
                 isActivateRadioButton = switchRecordar.isChecked();
@@ -79,11 +87,14 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                verificarLogin(username.getText().toString().toLowerCase(), contrasena.getText().toString().toLowerCase());
+
                 iniciarSesion();
             }
         });
     }
 
+    //Aquí va el metoodo IniciarSesión();
     public void iniciarSesion() {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
 
@@ -104,12 +115,13 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setNombre(objResultado.getJSONObject("datos").optString("nombre"));
                                 user.setRole(objResultado.getJSONObject("datos").optString("role"));
                                 Intent intent = new Intent(LoginActivity.this, OpcionesActivity.class);
-                                intent.putExtra("id", user.getId());
-                                intent.putExtra("nombre", user.getNombre());
-                                intent.putExtra("role", user.getRole());
-                                intent.putExtra("DATOS_USER", user);
-                                //guarda el estado del botón
-                                guardarEstadoSwitch();
+
+                                //guarda el estado del switch
+                                Preferences.savePreferencesBoolean(LoginActivity.this, switchRecordar.isChecked(), Preferences.PREFERENCES_ESTADO_SWITCH);
+                                Preferences.savePreferenesString(LoginActivity.this, user.getUsername(), Preferences.PREFERENCE_USUARIO_LOGIN);
+                                Preferences.savePreferenesString(LoginActivity.this, String.valueOf(user.getId()), Preferences.PREFERENCE_ID_USUARIO_LOGIN);
+                                Preferences.savePreferenesString(LoginActivity.this, user.getNombre(), Preferences.PREFERENCE_NOMBRE_USUARIO_LOGIN);
+                                Preferences.savePreferenesString(LoginActivity.this, user.getRole(), Preferences.PREFERENCE_ROLE_USUARIO_LOGIN);
                                 startActivity(intent);
                                 finish();
 
@@ -140,18 +152,9 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    public void guardarEstadoSwitch(){
-        SharedPreferences preferences = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
-        preferences.edit().putBoolean(PREFERENCES_ESTADO_SWITCH, switchRecordar.isChecked()).apply();
+    public void verificarLogin(String username, String contrasena) {
+        //Toast.makeText(this, "Username: " + username + "Contraseña: " + contrasena, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Username: " + USER, Toast.LENGTH_SHORT).show();
     }
 
-    public boolean obtenerEstadoSwitch(){
-        SharedPreferences preferences = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
-        return preferences.getBoolean(PREFERENCES_ESTADO_SWITCH,(false));
-    }
-
-    public static void cambiarEstadoSwitch(Context c, boolean b){
-        SharedPreferences preferences = c.getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
-        preferences.edit().putBoolean(PREFERENCES_ESTADO_SWITCH, b).apply();
-    }
 }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Actividades.OpcionesActivity"
+    android:background="@color/colorWhite"
     tools:showIn="@layout/app_bar_opciones">
 
     <ProgressBar
@@ -35,7 +36,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="164dp"
+                    android:layout_height="200dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -44,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:paddingTop="10dp"
-                        android:text="Hola Usuario"
+                        android:text="Bienvenido"
                         android:textAlignment="center"
                         android:textColor="@color/colorBlack"
                         android:textSize="24sp"
@@ -60,6 +61,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="24sp"
                         android:textStyle="bold|normal" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -246,31 +248,31 @@
 
 
                 <LinearLayout
-                        android:id="@+id/btn_timer"
+                    android:id="@+id/btn_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="0"
+                    android:background="@color/colorAccent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:src="@drawable/ic_timer_black_72dp"
+                        android:tint="@color/colorWhite" />
+
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_weight="0"
-                        android:background="@color/colorAccent"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:text="Iniciar Entreno"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="30dp"
-                            android:src="@drawable/ic_timer_black_72dp"
-                            android:tint="@color/colorWhite" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:padding="8dp"
-                            android:text="Iniciar Entreno"
-                            android:textAlignment="center"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="18sp" />
-
-                    </LinearLayout>
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -9,4 +9,6 @@ public class Conexion {
     public static final String URL_WEB_SERVICES ="http://www.iucesmag.edu.co/celular/vista/";
     //public static final String URL_WEB_SERVICES ="http://www.guialistas.com.br/celular/vista/";
 
+    public static final String URL_INICIAR_SESION ="http://www.iucesmag.edu.co/celular/vista/iniciar-sesion.php";
+
 }

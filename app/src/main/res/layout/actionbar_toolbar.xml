@@ -21,10 +21,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="238dp"
+                android:layout_width="240dp"
                 android:layout_height="55dp"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:src="@drawable/logo_toolbar" />
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/logo_toolbar" />
 
         </LinearLayout>
 </android.support.v7.widget.Toolbar>

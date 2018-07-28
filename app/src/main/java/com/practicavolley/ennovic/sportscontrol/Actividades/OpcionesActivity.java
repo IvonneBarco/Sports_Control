@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
+import com.practicavolley.ennovic.sportscontrol.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 public class OpcionesActivity extends AppCompatActivity
@@ -29,9 +30,9 @@ public class OpcionesActivity extends AppCompatActivity
 
     private LinearLayout athletes, group, training, sports, plans, settings, time;
     TextView nombreUsuario, rolUsuario, listarUsuario;
-    private Usuario user;
+    public Usuario user;
+    private String NOMBREUSUARIO, APELLIDOUSUARIO, IDUSUARIO, ROLEUSUARIO;
 
-    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,12 @@ public class OpcionesActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        NOMBREUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_NOMBRE_USUARIO_LOGIN);
+        IDUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ID_USUARIO_LOGIN);
+        ROLEUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ROLE_USUARIO_LOGIN);
+
+        ((TextView) findViewById(R.id.nom_usuario_home)).setText("¡HOLA " + NOMBREUSUARIO.toUpperCase() + "!");
+        ((TextView) findViewById(R.id.role_usuario_home)).setText(ROLEUSUARIO.toUpperCase());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +81,6 @@ public class OpcionesActivity extends AppCompatActivity
             public void onClick(View view) {
                 //Toast.makeText(OpcionesActivity.this, "Deportes", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(OpcionesActivity.this, Deportes.class);
-                intent.putExtra("DATOS_USER", user);
                 startActivity(intent);
             }
         });
@@ -83,9 +89,6 @@ public class OpcionesActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Toast.makeText(OpcionesActivity.this, "Grupo de apoyo", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(HomeActivity.this, Deportes.class);
-                intent.putExtra("DATOS_USER", user);
-                startActivity(intent);*/
             }
         });
 
@@ -94,7 +97,6 @@ public class OpcionesActivity extends AppCompatActivity
             public void onClick(View view) {
                 //Toast.makeText(OpcionesActivity.this, "Entrenamiento", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(OpcionesActivity.this, EntrenoProgramado.class);
-                //intent.putExtra("DATOS_USER", user);
                 startActivity(intent);
             }
         });
@@ -113,9 +115,6 @@ public class OpcionesActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Toast.makeText(OpcionesActivity.this, "Configuración", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(HomeActivity.this, Deportes.class);
-                intent.putExtra("DATOS_USER", user);
-                startActivity(intent);*/
             }
         });
 
@@ -124,17 +123,10 @@ public class OpcionesActivity extends AppCompatActivity
             public void onClick(View view) {
                 //Toast.makeText(OpcionesActivity.this, "Iniciar entrenamiento", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(OpcionesActivity.this, InicioEntrenamiento.class);
-                //intent.putExtra("DATOS_USER", user);
                 startActivity(intent);
             }
         });
 
-        /*Bundle bundle = getIntent().getExtras();
-        user = bundle.getParcelable("DATOS_USER");
-        user.getId();
-        ((TextView) findViewById(R.id.nom_usuario_home)).setText("¡HOLA " + user.getNombre().toUpperCase() + "!");
-        user.getUsername();
-        ((TextView) findViewById(R.id.role_usuario_home)).setText(user.getRole().toUpperCase());*/
         //////////////////////// HOME ///////////////////////////////////////
     }
 
@@ -164,7 +156,7 @@ public class OpcionesActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            LoginActivity.cambiarEstadoSwitch(OpcionesActivity.this, false);
+            Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
             Intent i = new Intent(OpcionesActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
@@ -195,6 +187,7 @@ public class OpcionesActivity extends AppCompatActivity
                 break;
             case R.id.nav_settings:
                 Toast.makeText(this, "Configuraciones", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.nav_exit:
                 Toast.makeText(this, "Salir", Toast.LENGTH_SHORT).show();

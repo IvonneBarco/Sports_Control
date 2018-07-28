@@ -23,6 +23,7 @@ import com.practicavolley.ennovic.sportscontrol.Adapters.AdaptadorDeportes;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.DeportesVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
+import com.practicavolley.ennovic.sportscontrol.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 import org.json.JSONArray;
@@ -38,7 +39,6 @@ public class Deportes extends AppCompatActivity {
     private Usuario user;
     TextView username, contrasena;
 
-
     //RECYCLER
     //Creamos una lista igual a la de AdaptadorDeportes
     ArrayList<DeportesVo> listaDeportes;
@@ -46,11 +46,17 @@ public class Deportes extends AppCompatActivity {
     //Referencia al recycler_id
     RecyclerView recyclerDeportes;
 
+    private String NOMBREUSUARIO, APELLIDOUSUARIO, IDUSUARIO, ROLEUSUARIO;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deportes);
+
+        NOMBREUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_NOMBRE_USUARIO_LOGIN);
+        IDUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ID_USUARIO_LOGIN);
+        ROLEUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ROLE_USUARIO_LOGIN);
 
         // Codigo flecha atras...
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -61,22 +67,12 @@ public class Deportes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //regresar...
+
                 finish();
             }
         });
 
         // * Codigo flecha atras...
-
-        /*username = (TextView) findViewById(R.id.txtUsuario);
-        contrasena = (TextView) findViewById(R.id.txtContrasena);*/
-
-        //Se recupera los datos del usuario que inicio sesión
-        Bundle bundle = getIntent().getExtras();
-        user = bundle.getParcelable("DATOS_USER");
-        /*((TextView) findViewById(R.id.idSesion)).setText(user.getId() + "");
-        ((TextView) findViewById(R.id.roleSesion)).setText(user.getRole());*/
-        user.getId();
-        user.getRole();
 
         //INICIO CODIGO RECYCLER
 
@@ -155,8 +151,8 @@ public class Deportes extends AppCompatActivity {
             //LOS CAMPOS EN VERDE DEBEN SER IGUAL AL DEL ARCHIVO PHP
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("id", String.valueOf(user.getId()));
-                params.put("role", user.getRole());
+                params.put("id", IDUSUARIO);
+                params.put("role", ROLEUSUARIO);
                 return params;
             }
         };
@@ -166,9 +162,10 @@ public class Deportes extends AppCompatActivity {
 
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.opciones, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -180,14 +177,15 @@ public class Deportes extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            //Intent intentStart = new Intent(EntrenoProgramado.this.getBaseContext(), OpcionesActivity.class);
-            //startActivity(intentStart);
+        if (id == R.id.action_home) {
+            //Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
+            Intent i = new Intent(Deportes.this, OpcionesActivity.class);
+            startActivity(i);
+            finish();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 }
