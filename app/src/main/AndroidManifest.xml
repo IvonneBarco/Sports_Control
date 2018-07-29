@@ -33,7 +33,8 @@
         <activity
             android:name=".Actividades.OpcionesActivity"
             android:logo="@drawable/logo_sportscontrol"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Actividades.Entrenamientos"></activity>
     </application>
 
 </manifest>

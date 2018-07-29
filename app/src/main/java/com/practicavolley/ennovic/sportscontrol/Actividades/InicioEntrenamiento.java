@@ -1,17 +1,22 @@
+//ENTRENO INICIAR
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -36,6 +41,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Entreno;
+import com.practicavolley.ennovic.sportscontrol.Modelos.LigasVo;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 import org.json.JSONArray;
@@ -64,7 +70,6 @@ public class InicioEntrenamiento extends AppCompatActivity {
     EditText e_latitud, e_longitud;
     LocationManager locationManager;
     LocationListener locationListener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +101,8 @@ public class InicioEntrenamiento extends AppCompatActivity {
         e_latitud = (EditText) findViewById(R.id.e_latitud_id);
 
         actualizar.setEnabled(false);
-
         parar.setEnabled(false);
+
         spinner = (Spinner) findViewById(R.id.spinner);
 
         layout_check = (LinearLayout) findViewById(R.id.base_layout);
@@ -127,24 +132,6 @@ public class InicioEntrenamiento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(InicioEntrenamiento.this, "ACTUALIZANDO...", Toast.LENGTH_LONG).show();
-
-                /*for (Integer marcados : chekedList) {
-                    boolean estado = false;
-                    for (Integer reco : chekedguardList) {
-                        if (marcados == reco) {
-                            estado = true;
-
-                        }
-                    }
-                    if (!estado) {
-                        String cadena = marcados + "";
-                        registrarAthletas(tmp, cadena);
-                        chekedguardList.add(marcados);
-
-                    }
-
-                }*/
-
                 actualizarentreno();
             }
         });
@@ -220,9 +207,10 @@ public class InicioEntrenamiento extends AppCompatActivity {
                             registrarAthletas(tmp, cadena);
                             chekedguardList.add(marcados);
 
+                            chekedguardList.remove(marcados);
 
                         }
-                        iniciar.setEnabled(false);
+                        DesactivarBoton(iniciar, false);
                         descripcion.setEnabled(false);
                         actualizar.setEnabled(true);
                         parar.setEnabled(true);
@@ -316,6 +304,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
                         Intent intent = new Intent(InicioEntrenamiento.this, InicioEntrenamiento.class);
                         intent.putExtra("DATOS_USER", user);
                         startActivity(intent);
+                        finish();
 
                     }
 
@@ -348,6 +337,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
             for (Integer reco : chekedguardList) {
                 if (marcados == reco) {
                     estado = true;
+
 
                 }
             }
@@ -398,6 +388,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
                                 // Toast.makeText(adapterView.getContext(),datosid[pos].toString(), Toast.LENGTH_SHORT).show();
                                 tmp = datosid[pos].toString();
                                 listarAthletas(tmp);
+
                             }
 
                             @Override
@@ -542,5 +533,11 @@ public class InicioEntrenamiento extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void DesactivarBoton(Button boton, Boolean b){
+        boton.setEnabled(false);
+        boton.setBackgroundColor(R.color.colorGray);
     }
 }

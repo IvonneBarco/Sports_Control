@@ -191,8 +191,9 @@ public class EntrenoProgramado extends AppCompatActivity {
                     }else{
 
                         Toast.makeText(EntrenoProgramado.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                        Intent intent =new Intent(EntrenoProgramado.this, HomeActivity.class);
+                        Intent intent =new Intent(EntrenoProgramado.this.getBaseContext(), OpcionesActivity.class);
                         startActivity(intent);
+                        finish();
                     }
 
                 } catch (JSONException e) {

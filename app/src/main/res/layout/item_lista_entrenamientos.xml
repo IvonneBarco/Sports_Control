@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/id_img_athlete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:id="@+id/layout_info"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/id_img_athlete">
+
+            <TextView
+                android:id="@+id/id_nombre_entrenamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOMBRE ENTRENAMIENTO"
+                android:textStyle="bold|normal"/>
+
+            <TextView
+                android:id="@+id/id_fecha_entrenamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha"/>
+
+            <TextView
+                android:id="@+id/id_hora_inicio_entrenamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora inicio"/>
+
+            <TextView
+                android:id="@+id/id_hora_fin_entrenamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora fin"/>
+
+            <TextView
+                android:id="@+id/id_lugar_entrenamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lugar"/>
+
+            <TextView
+                android:id="@+id/id_semana_entrenamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Semana"/>
+
+            <TextView
+                android:id="@+id/id_descripcion_entrenamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descripción"/>
+
+            <TextView
+                android:id="@+id/id_entrenamiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="id"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/layout_info"
+            android:gravity="center|center_vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_visibility_black_64dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

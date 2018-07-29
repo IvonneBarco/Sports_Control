@@ -187,6 +187,8 @@ public class OpcionesActivity extends AppCompatActivity
                 break;
             case R.id.nav_settings:
                 Toast.makeText(this, "Configuraciones", Toast.LENGTH_SHORT).show();
+                Intent intentE= new Intent(OpcionesActivity.this.getBaseContext(), Entrenamientos.class);
+                startActivity(intentE);
 
                 break;
             case R.id.nav_exit:
