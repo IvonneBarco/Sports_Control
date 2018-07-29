@@ -1,5 +1,6 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +44,8 @@ public class AtletasEntrenador extends AppCompatActivity {
     private EntrenadoresVo entrenador;
     TextView nomdeporte, iddeporte;
 
+    private String IDUSUARIO, ROLEUSUARIO;
+
     //RECYCLER
     ArrayList<AtletaVo> listaAtletas;
 
@@ -72,15 +75,6 @@ public class AtletasEntrenador extends AppCompatActivity {
         // Recuperando variables usuario, deporte y liga
         Bundle bundle = getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
-        /*((TextView) findViewById(R.id.idSesiona)).setText("ID USUARIO: " + user.getId());
-        ((TextView) findViewById(R.id.rolSesiona)).setText("ROL: " + user.getRole());
-        String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
-        ((TextView) findViewById(R.id.id_iddeporte_liga)).setText("ID DEPORTE: " + recuperamos_iddeporte);
-        String recuperamos_idliga = getIntent().getStringExtra("idliga");
-        ((TextView) findViewById(R.id.id_idliga)).setText("ID LIGA: " + recuperamos_idliga);*/
-
-        user.getId();
-        user.getRole();
         final String recuperamos_identrenador = getIntent().getStringExtra("identrenador");
         final String recuperamos_idliga = getIntent().getStringExtra("liga");
         // Fin * Recuperando variables usuario y deporte
@@ -159,7 +153,7 @@ public class AtletasEntrenador extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.opciones, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -171,9 +165,10 @@ public class AtletasEntrenador extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            //Intent intentStart = new Intent(EntrenoProgramado.this.getBaseContext(), OpcionesActivity.class);
-            //startActivity(intentStart);
+        if (id == R.id.action_home) {
+            Intent i = new Intent(AtletasEntrenador.this, OpcionesActivity.class);
+            startActivity(i);
+            finish();
             return true;
         }
 

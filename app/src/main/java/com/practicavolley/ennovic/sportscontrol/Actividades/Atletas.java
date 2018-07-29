@@ -1,5 +1,6 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +25,7 @@ import com.practicavolley.ennovic.sportscontrol.Modelos.AtletaVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.DeportesVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.LigasVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
+import com.practicavolley.ennovic.sportscontrol.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 import org.json.JSONArray;
@@ -41,6 +43,8 @@ public class Atletas extends AppCompatActivity {
     private DeportesVo sport;
     TextView nomdeporte, iddeporte;
 
+    private String IDUSUARIO, ROLEUSUARIO;
+
     //RECYCLER
     ArrayList<AtletaVo> listaAtletas;
 
@@ -51,6 +55,9 @@ public class Atletas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atletas);
+
+        IDUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ID_USUARIO_LOGIN);
+        ROLEUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ROLE_USUARIO_LOGIN);
 
         // Codigo flecha atras...
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -66,22 +73,6 @@ public class Atletas extends AppCompatActivity {
         });
 
         // * Codigo flecha atras...
-
-        // Recuperando variables usuario, deporte y liga
-        Bundle bundle = getIntent().getExtras();
-        user = bundle.getParcelable("DATOS_USER");
-        /*((TextView) findViewById(R.id.idSesiona)).setText("ID USUARIO: " + user.getId());
-        ((TextView) findViewById(R.id.rolSesiona)).setText("ROL: " + user.getRole());
-        String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
-        ((TextView) findViewById(R.id.id_iddeporte_liga)).setText("ID DEPORTE: " + recuperamos_iddeporte);
-        String recuperamos_idliga = getIntent().getStringExtra("idliga");
-        ((TextView) findViewById(R.id.id_idliga)).setText("ID LIGA: " + recuperamos_idliga);*/
-
-        user.getId();
-        user.getRole();
-        String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
-        String recuperamos_idliga = getIntent().getStringExtra("idliga");
-        // Fin * Recuperando variables usuario y deporte
 
         //Inicio * Recycler
         listaAtletas = new ArrayList<>();
@@ -143,10 +134,7 @@ public class Atletas extends AppCompatActivity {
             //LOS CAMPOS EN VERDE DEBEN SER IGUAL AL DEL ARCHIVO PHP
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("id", String.valueOf(user.getId()));
-                //params.put("role", user.getRole());
-                //params.put("deporte", "1");
-                //params.put("liga", "2");
+                params.put("id", IDUSUARIO);
                 params.put("liga", String.valueOf(getIntent().getStringExtra("idliga")));
                 return params;
             }
@@ -161,7 +149,7 @@ public class Atletas extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.opciones, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -173,9 +161,10 @@ public class Atletas extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            //Intent intentStart = new Intent(EntrenoProgramado.this.getBaseContext(), OpcionesActivity.class);
-            //startActivity(intentStart);
+        if (id == R.id.action_home) {
+            Intent i = new Intent(Atletas.this, OpcionesActivity.class);
+            startActivity(i);
+            finish();
             return true;
         }
 

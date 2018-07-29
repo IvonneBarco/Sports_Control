@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="Recordarme " />
+            android:text="@string/str_switch_login" />
 
     </LinearLayout>
 

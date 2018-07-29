@@ -46,7 +46,7 @@ public class Deportes extends AppCompatActivity {
     //Referencia al recycler_id
     RecyclerView recyclerDeportes;
 
-    private String NOMBREUSUARIO, APELLIDOUSUARIO, IDUSUARIO, ROLEUSUARIO;
+    private String IDUSUARIO, ROLEUSUARIO;
 
 
     @Override
@@ -54,7 +54,6 @@ public class Deportes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deportes);
 
-        NOMBREUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_NOMBRE_USUARIO_LOGIN);
         IDUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ID_USUARIO_LOGIN);
         ROLEUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ROLE_USUARIO_LOGIN);
 

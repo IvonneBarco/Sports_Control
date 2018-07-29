@@ -23,8 +23,10 @@ import com.practicavolley.ennovic.sportscontrol.Adapters.AdaptadorEntrenador;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.DeportesVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.EntrenadoresVo;
+import com.practicavolley.ennovic.sportscontrol.Modelos.Entreno;
 import com.practicavolley.ennovic.sportscontrol.Modelos.LigasVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
+import com.practicavolley.ennovic.sportscontrol.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 import org.json.JSONArray;
@@ -43,6 +45,8 @@ public class Entrenadores extends AppCompatActivity {
     private EntrenadoresVo coach;
     TextView idliga, iddeporte;
 
+    private String IDUSUARIO, ROLEUSUARIO;
+
 
     //RECYCLER
     ArrayList<EntrenadoresVo> listaEntrenadores;
@@ -54,6 +58,9 @@ public class Entrenadores extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrenadores);
+
+        IDUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ID_USUARIO_LOGIN);
+        ROLEUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ROLE_USUARIO_LOGIN);
 
         // Codigo flecha atras...
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -73,15 +80,7 @@ public class Entrenadores extends AppCompatActivity {
         // Recuperando variables usuario, deporte y liga
         Bundle bundle = getIntent().getExtras();
         user = bundle.getParcelable("DATOS_USER");
-        /*((TextView) findViewById(R.id.idSesionl)).setText("ID USUARIO: " + user.getId());
-        ((TextView) findViewById(R.id.rolSesionl)).setText("ROL: " + user.getRole());
-        String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
-        ((TextView) findViewById(R.id.id_iddeporte_liga)).setText("ID DEPORTE: " + recuperamos_iddeporte);
-        String recuperamos_idliga = getIntent().getStringExtra("idliga");
-        ((TextView) findViewById(R.id.id_idliga)).setText("ID LIGA: " + recuperamos_idliga);*/
 
-        user.getId();
-        user.getRole();
         final String recuperamos_iddeporte = getIntent().getStringExtra("deporte");
         final String recuperamos_idliga = getIntent().getStringExtra("idliga");
         // Fin * Recuperando variables usuario y deporte
@@ -164,12 +163,10 @@ public class Entrenadores extends AppCompatActivity {
             //LOS CAMPOS EN VERDE DEBEN SER IGUAL AL DEL ARCHIVO PHP
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("id", String.valueOf(user.getId()));
-                params.put("role", user.getRole());
+                params.put("id", IDUSUARIO);
+                params.put("role", ROLEUSUARIO);
                 params.put("deporte", recuperamos_iddeporte);
                 params.put("liga", recuperamos_idliga);
-                //params.put("deporte", String.valueOf(getIntent().getStringExtra("iddeporte")));
-                //params.put("liga", String.valueOf(getIntent().getStringExtra("idliga")));
                 return params;
             }
         };
@@ -179,9 +176,10 @@ public class Entrenadores extends AppCompatActivity {
 
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.opciones, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -193,9 +191,11 @@ public class Entrenadores extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            //Intent intentStart = new Intent(EntrenoProgramado.this.getBaseContext(), OpcionesActivity.class);
-            //startActivity(intentStart);
+        if (id == R.id.action_home) {
+            //Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
+            Intent i = new Intent(Entrenadores.this, OpcionesActivity.class);
+            startActivity(i);
+            finish();
             return true;
         }
 

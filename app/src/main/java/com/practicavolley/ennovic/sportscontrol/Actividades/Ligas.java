@@ -24,6 +24,7 @@ import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.DeportesVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.LigasVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
+import com.practicavolley.ennovic.sportscontrol.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 import org.json.JSONArray;
@@ -40,6 +41,8 @@ public class Ligas extends AppCompatActivity {
     private DeportesVo sport;
     TextView nomdeporte, iddeporte;
 
+    private String IDUSUARIO, ROLEUSUARIO;
+
     //RECYCLER
     ArrayList<LigasVo> listaLigas;
 
@@ -51,6 +54,9 @@ public class Ligas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ligas);
+
+        IDUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ID_USUARIO_LOGIN);
+        ROLEUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ROLE_USUARIO_LOGIN);
 
         // Codigo flecha atras...
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -76,8 +82,6 @@ public class Ligas extends AppCompatActivity {
         final String recuperamos_iddeporte = getIntent().getStringExtra("iddeporte");
         //((TextView) findViewById(R.id.id_deporte)).setText("ID DEPORTE: " + recuperamos_iddeporte);
 
-        user.getId();
-        user.getRole();
         // Fin * Recuperando variables usuario y deporte
 
         //Inicio * Recycler
@@ -124,7 +128,7 @@ public class Ligas extends AppCompatActivity {
                                     @Override
                                     public void onClick(View view) {
                                         //Toast.makeText(getApplicationContext(), "" + listaLigas.get(recyclerLigas.getChildAdapterPosition(view)).getNombreliga(), Toast.LENGTH_SHORT).show();
-                                        if (user.getRole().equalsIgnoreCase("admin")){
+                                        if (ROLEUSUARIO.equalsIgnoreCase("admin")){
                                             //Envio de variables DATOS_USER
                                             Intent intentd = new Intent(Ligas.this, Entrenadores.class);
                                             intentd.putExtra("DATOS_USER", user);
@@ -134,7 +138,7 @@ public class Ligas extends AppCompatActivity {
                                             //intent.putExtra("role", user.getRole());
                                             startActivity(intentd);
                                         }else{
-                                            if (user.getRole().equalsIgnoreCase("entrenador")){
+                                            if (ROLEUSUARIO.equalsIgnoreCase("entrenador")){
                                                 //Envio de variables DATOS_USER
                                                 Intent intentd = new Intent(Ligas.this, Atletas.class);
                                                 intentd.putExtra("DATOS_USER", user);
@@ -167,8 +171,8 @@ public class Ligas extends AppCompatActivity {
             //LOS CAMPOS EN VERDE DEBEN SER IGUAL AL DEL ARCHIVO PHP
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("id", String.valueOf(user.getId()));
-                params.put("role", user.getRole());
+                params.put("id", IDUSUARIO);
+                params.put("role", ROLEUSUARIO);
                 params.put("deporte",getIntent().getStringExtra("iddeporte"));
                 return params;
             }
@@ -180,9 +184,10 @@ public class Ligas extends AppCompatActivity {
 
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.opciones, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -194,9 +199,11 @@ public class Ligas extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            //Intent intentStart = new Intent(EntrenoProgramado.this.getBaseContext(), OpcionesActivity.class);
-            //startActivity(intentStart);
+        if (id == R.id.action_home) {
+            //Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
+            Intent i = new Intent(Ligas.this, OpcionesActivity.class);
+            startActivity(i);
+            finish();
             return true;
         }
 

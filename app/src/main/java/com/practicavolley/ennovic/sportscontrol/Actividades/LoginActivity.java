@@ -87,8 +87,6 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                verificarLogin(username.getText().toString().toLowerCase(), contrasena.getText().toString().toLowerCase());
-
                 iniciarSesion();
             }
         });
@@ -150,11 +148,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         queue.add(stringRequest);
-    }
-
-    public void verificarLogin(String username, String contrasena) {
-        //Toast.makeText(this, "Username: " + username + "Contraseña: " + contrasena, Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, "Username: " + USER, Toast.LENGTH_SHORT).show();
     }
 
 }
