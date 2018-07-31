@@ -139,8 +139,8 @@ public class AtletasEntrenador extends AppCompatActivity {
             //LOS CAMPOS EN VERDE DEBEN SER IGUAL AL DEL ARCHIVO PHP
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("id", String.valueOf(getIntent().getStringExtra("identrenador")));
-                params.put("liga", String.valueOf(getIntent().getStringExtra("liga")));
+                params.put("id", recuperamos_identrenador);
+                params.put("liga",recuperamos_idliga);
                 return params;
             }
         };
@@ -166,7 +166,7 @@ public class AtletasEntrenador extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_home) {
-            Intent i = new Intent(AtletasEntrenador.this, OpcionesActivity.class);
+            Intent i = new Intent(AtletasEntrenador.this, OpcionesActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(i);
             finish();
             return true;

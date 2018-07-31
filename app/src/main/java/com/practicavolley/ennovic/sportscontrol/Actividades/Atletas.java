@@ -1,6 +1,7 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,7 +26,7 @@ import com.practicavolley.ennovic.sportscontrol.Modelos.AtletaVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.DeportesVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.LigasVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
-import com.practicavolley.ennovic.sportscontrol.Preferences;
+import com.practicavolley.ennovic.sportscontrol.Clases.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 import org.json.JSONArray;
@@ -35,6 +36,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import es.dmoral.toasty.Toasty;
 
 public class Atletas extends AppCompatActivity {
 
@@ -97,7 +100,9 @@ public class Atletas extends AppCompatActivity {
                             JSONArray athletes = objresultado.getJSONArray("athleta");
 
                             if (athletes.length() <= 0) {
-                                Toast.makeText(Atletas.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(Atletas.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
+                                Drawable icon = getResources().getDrawable(R.drawable.ic_settings);
+                                Toasty.normal(Atletas.this, "Configuraciones", icon).show();
 
                             } else {
 
@@ -162,7 +167,7 @@ public class Atletas extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_home) {
-            Intent i = new Intent(Atletas.this, OpcionesActivity.class);
+            Intent i = new Intent(Atletas.this, OpcionesActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(i);
             finish();
             return true;

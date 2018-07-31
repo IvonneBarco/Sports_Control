@@ -1,21 +1,13 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Path;
-import android.preference.SwitchPreference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -23,20 +15,17 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
-import com.practicavolley.ennovic.sportscontrol.Preferences;
+import com.practicavolley.ennovic.sportscontrol.Clases.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
-import com.practicavolley.ennovic.sportscontrol.VolleyRP;
+import com.practicavolley.ennovic.sportscontrol.Clases.VolleyRP;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
-import java.time.chrono.JapaneseDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         mrequestQueue = volley.getRequestQueue();
 
         if (Preferences.obtenerPreferencesBoolean(LoginActivity.this, Preferences.PREFERENCES_ESTADO_SWITCH)) {
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, OpcionesActivity.class);
             startActivity(intent);
             finish();
         }

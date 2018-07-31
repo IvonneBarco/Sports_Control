@@ -46,8 +46,9 @@ public class EntrenamientoVo {
         return fecha_entrenamiento;
     }
 
-    public void setFecha_entrenamiento(String fecha_entrenamiento) {
+    public String setFecha_entrenamiento(String fecha_entrenamiento) {
         this.fecha_entrenamiento = fecha_entrenamiento;
+        return fecha_entrenamiento;
     }
 
     public String getHorainicio_entrenameinto() {

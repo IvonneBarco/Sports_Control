@@ -8,6 +8,9 @@ public class EntrenadoresVo {
     private String idliga;
     private int foto;
 
+    public EntrenadoresVo() {
+    }
+
     //Constructor
     public EntrenadoresVo(String identrenador, String nombreentrenador, String apellidoentrenador, String idliga, int foto) {
         this.identrenador = identrenador;
@@ -57,8 +60,7 @@ public class EntrenadoresVo {
         this.idliga = idliga;
     }
 
-    public EntrenadoresVo() {
-    }
+
 
 
 

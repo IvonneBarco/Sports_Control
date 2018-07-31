@@ -50,7 +50,7 @@ public class AdaptadorEntrenamiento extends RecyclerView.Adapter<AdaptadorEntren
     public void onBindViewHolder(AdaptadorEntrenamiento.ViewHolderEntrenamiento holder, int position) {
 
         holder.etiqueta_id_entrenamiento.setText(listaEntrenamientos.get(position).getId_entrenamiento().toUpperCase());
-        holder.etiqueta_nombre_entrenamiento.setText(listaEntrenamientos.get(position).getNombre_entrenamiento());
+        holder.etiqueta_nombre_entrenamiento.setText(listaEntrenamientos.get(position).getNombre_entrenamiento().toUpperCase());
         holder.etiqueta_fecha_entrenamiento.setText(listaEntrenamientos.get(position).getFecha_entrenamiento());
         holder.etiqueta_horainicio_entrenamiento.setText(listaEntrenamientos.get(position).getHorainicio_entrenameinto());
         holder.etiqueta_hfin_entrenamiento.setText(listaEntrenamientos.get(position).getHorafin_entrenamiento());

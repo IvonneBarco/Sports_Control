@@ -3,22 +3,31 @@ package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,6 +61,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import es.dmoral.toasty.Toasty;
+
 public class InicioEntrenamiento extends AppCompatActivity {
 
     //Entreno iniciar
@@ -70,6 +81,13 @@ public class InicioEntrenamiento extends AppCompatActivity {
     EditText e_latitud, e_longitud;
     LocationManager locationManager;
     LocationListener locationListener;
+
+    //Notificacion
+    NotificationCompat.Builder notificacion;
+    int notificacionId = 1;
+    String channelId = "my_channerl_01";
+    long[] pattern = new long[]{1000, 500, 1000};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,15 +133,18 @@ public class InicioEntrenamiento extends AppCompatActivity {
         iniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(InicioEntrenamiento.this, "ENTRENAMIENTO INICIADO", Toast.LENGTH_LONG).show();
+                //Toast.makeText(InicioEntrenamiento.this, "ENTRENAMIENTO INICIADO", Toast.LENGTH_LONG).show();
+                Toasty.success(InicioEntrenamiento.this, "ENTRENAMIENTO INICIADO", Toast.LENGTH_LONG).show();
                 registrar();
+                notificacionEntrenamientoIniciado();
             }
         });
 
         parar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(InicioEntrenamiento.this, "ENTRENAMIENTO DETENIDO", Toast.LENGTH_LONG).show();
+                //Toast.makeText(InicioEntrenamiento.this, "ENTRENAMIENTO DETENIDO", Toast.LENGTH_LONG).show();
+                Toasty.error(InicioEntrenamiento.this, "ENTRENAMIENTO DETENIDO", Toast.LENGTH_LONG).show();
                 pararentreno();
             }
         });
@@ -131,8 +152,10 @@ public class InicioEntrenamiento extends AppCompatActivity {
         actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(InicioEntrenamiento.this, "ACTUALIZANDO...", Toast.LENGTH_LONG).show();
+                //Toast.makeText(InicioEntrenamiento.this, "ACTUALIZANDO...", Toast.LENGTH_LONG).show();
+                Toasty.info(InicioEntrenamiento.this, "ACTUALIZANDO...", Toast.LENGTH_LONG).show();
                 actualizarentreno();
+                notificacionEntrenamientoIniciado();
             }
         });
 
@@ -385,7 +408,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
 
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-                                // Toast.makeText(adapterView.getContext(),datosid[pos].toString(), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(adapterView.getContext(),datosid[pos].toString(), Toast.LENGTH_SHORT).show();
                                 tmp = datosid[pos].toString();
                                 listarAthletas(tmp);
 
@@ -539,5 +562,64 @@ public class InicioEntrenamiento extends AppCompatActivity {
     public void DesactivarBoton(Button boton, Boolean b){
         boton.setEnabled(false);
         boton.setBackgroundColor(R.color.colorGray);
+    }
+
+    public void notificacionEntrenamientoIniciado() {
+        final NotificationManager notificationManager = (NotificationManager) getSystemService(getApplicationContext().NOTIFICATION_SERVICE);
+
+        notificacion = new NotificationCompat.Builder(this, null);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            //Nombre del canal
+            CharSequence name = "Entrenamiento Iniciado";
+
+            //Descripción
+            String descripcion = "Entrenamiento en curso";
+            int importancia = NotificationManager.IMPORTANCE_HIGH;
+
+            NotificationChannel mchannel = new NotificationChannel(channelId, name, importancia);
+
+            //Configuracion canal de notificación
+            mchannel.setDescription(descripcion);
+            mchannel.enableLights(true);
+
+            //Configuraciones de notificación
+            mchannel.setLightColor(Color.RED);
+            mchannel.enableVibration(true);
+            mchannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            notificationManager.createNotificationChannel(mchannel);
+
+            notificacion = new NotificationCompat.Builder(this, channelId);
+
+
+        }
+
+        notificacion.setSmallIcon(R.drawable.logo_sportscontrol).setContentTitle("Entrenamiento en curso").setContentText("Toca aquí para ir al entrenamiento");
+        notificacion.setAutoCancel(true);
+        notificacion.setTicker("El entrenamiento ha iniciado");
+        //notificacion.setUsesChronometer(true);
+        notificacion.setVibrate(pattern);
+        //Defino que la notificacion sea permamente
+        //notificacion.setOngoing(true);
+        Intent notificationIntent = new Intent(InicioEntrenamiento.this, InicioEntrenamiento.class);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(InicioEntrenamiento.this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
+        notificationManager.cancel(1);
+        notificacion.setContentIntent(pendingIntent);
+
+        notificacion.setChannelId(channelId);
+        notificationManager.notify(notificacionId, notificacion.build());
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Toast.makeText(this, "POR FAVOR PERMANEZCA EN ESTA VISTA", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".Actividades.Entrenamientos">
 
     <ProgressBar
@@ -24,38 +25,50 @@
 
         <include layout="@layout/actionbar_toolbar" />
 
-        <ScrollView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="ENTRENAMIENTOS"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp"
+                    android:textStyle="bold|normal" />
 
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:text="ENTRENAMIENTOS"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="24sp"
-                        android:textStyle="bold|normal"/>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/RecyclerEntrenamientosId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-                </LinearLayout>
+                </ScrollView>
             </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:tint="@color/colorWhite"
+        android:title="@string/action_nuevo_entrenamiento"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -23,7 +23,7 @@ import com.practicavolley.ennovic.sportscontrol.Adapters.AdaptadorDeportes;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.DeportesVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
-import com.practicavolley.ennovic.sportscontrol.Preferences;
+import com.practicavolley.ennovic.sportscontrol.Clases.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 import org.json.JSONArray;
@@ -178,7 +178,7 @@ public class Deportes extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_home) {
             //Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
-            Intent i = new Intent(Deportes.this, OpcionesActivity.class);
+            Intent i = new Intent(Deportes.this, OpcionesActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(i);
             finish();
             return true;

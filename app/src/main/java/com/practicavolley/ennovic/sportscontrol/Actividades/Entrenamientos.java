@@ -1,6 +1,7 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,16 +19,15 @@ import com.android.volley.toolbox.Volley;
 import com.practicavolley.ennovic.sportscontrol.Adapters.AdaptadorEntrenamiento;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.EntrenamientoVo;
-import com.practicavolley.ennovic.sportscontrol.Preferences;
+import com.practicavolley.ennovic.sportscontrol.Clases.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Entrenamientos extends AppCompatActivity {
 
@@ -61,6 +60,19 @@ public class Entrenamientos extends AppCompatActivity {
         });
 
         // * Codigo flecha atras...
+
+        //fab
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+
+                Intent newEntrenamiento = new Intent(Entrenamientos.this, EntrenoProgramado.class);
+                startActivity(newEntrenamiento);
+            }
+        });
 
         //Inicio * Recycler
         listaEntrenamiento = new ArrayList<>();
@@ -98,6 +110,7 @@ public class Entrenamientos extends AppCompatActivity {
                                     entrenamiento.setLugar_entrenamiento(objEntrenamientos.optString("lugar"));
                                     entrenamiento.setSemana_entrenamiento(objEntrenamientos.optString("semana_id"));
                                     entrenamiento.setDescripcion_entrenamiento(objEntrenamientos.optString("descripcion"));
+
                                     listaEntrenamiento.add(entrenamiento);
 
                                 }
@@ -111,11 +124,10 @@ public class Entrenamientos extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "" + listaEntrenamiento.get(recyclerEntrenamientos.getChildAdapterPosition(view)).getId_entrenamiento(), Toast.LENGTH_SHORT).show();
 
                                         //Envio de variables DATOS_USER
-                                        /*Intent intent = new Intent(Entrenamientos.this, InicioEntrenamiento.class);
-                                        //intentd.putExtra("DATOS_USER", user);
+                                        Intent intent = new Intent(Entrenamientos.this, InicioEntrenamiento.class);
                                         //Envio variable identrenamiento
                                         intent.putExtra("id", listaEntrenamiento.get(recyclerEntrenamientos.getChildAdapterPosition(view)).getId_entrenamiento());
-                                        startActivity(intent);*/
+                                        startActivity(intent);
 
                                     }
                                 });
@@ -146,5 +158,11 @@ public class Entrenamientos extends AppCompatActivity {
 
         // Add JsonArrayRequest to the RequestQueue
         requestQueue.add(stringRequest);
+    }
+
+    public void fechaActual(){
+        long hoy = System.currentTimeMillis();
+        String mifecha = new SimpleDateFormat("yyyy/MM/dd").format(hoy);
+        //Toast.makeText(this, "HOY ES: "+ mifecha, Toast.LENGTH_LONG).show();
     }
 }

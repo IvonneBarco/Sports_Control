@@ -36,7 +36,7 @@ public class AdaptadorEntrenador extends RecyclerView.Adapter<AdaptadorEntrenado
 
         public ViewHolderEntrenadores(View itemView) {
             super(itemView);
-            //etiqueta_identrenador = (TextView)itemView.findViewById(R.id.id_deporte_list);
+            etiqueta_identrenador = (TextView)itemView.findViewById(R.id.id_deporte_entrenadores_list);
             etiqueta_nombre_entrenador = (TextView)itemView.findViewById(R.id.id_nombre_entrenadores_list);
             etiqueta_apellido_entrenador = (TextView)itemView.findViewById(R.id.id_apellido_entrenadores_list);
             etiqueta_idliga = (TextView)itemView.findViewById(R.id.id_liga_entrenadores_list);
@@ -46,7 +46,7 @@ public class AdaptadorEntrenador extends RecyclerView.Adapter<AdaptadorEntrenado
 
     @Override
     public void onBindViewHolder(AdaptadorEntrenador.ViewHolderEntrenadores holder, int position) {
-        //holder.etiqueta_identrenador.setText(listaEntrenadores.get(position).getIdentrenador());
+        holder.etiqueta_identrenador.setText(listaEntrenadores.get(position).getIdentrenador());
         //holder.etiqueta_nombre_entrenador.setText(listaEntrenadores.get(position).getNombreentrenador().toUpperCase() + " " + listaEntrenadores.get(position).getApellidoentrenador().toUpperCase());
         holder.etiqueta_nombre_entrenador.setText(listaEntrenadores.get(position).getNombreentrenador());
         holder.etiqueta_apellido_entrenador.setText(listaEntrenadores.get(position).getApellidoentrenador());

@@ -1,16 +1,10 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
-import com.practicavolley.ennovic.sportscontrol.Preferences;
+import com.practicavolley.ennovic.sportscontrol.Clases.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 public class HomeActivity extends AppCompatActivity {

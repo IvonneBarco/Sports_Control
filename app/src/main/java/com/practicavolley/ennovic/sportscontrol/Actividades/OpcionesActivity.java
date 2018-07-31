@@ -1,13 +1,9 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,8 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
-import com.practicavolley.ennovic.sportscontrol.Preferences;
+import com.practicavolley.ennovic.sportscontrol.Clases.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
+
+import es.dmoral.toasty.Toasty;
 
 public class OpcionesActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,14 +46,7 @@ public class OpcionesActivity extends AppCompatActivity
         ((TextView) findViewById(R.id.nom_usuario_home)).setText("¡HOLA " + NOMBREUSUARIO.toUpperCase() + "!");
         ((TextView) findViewById(R.id.role_usuario_home)).setText(ROLEUSUARIO.toUpperCase());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -96,7 +87,7 @@ public class OpcionesActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 //Toast.makeText(OpcionesActivity.this, "Entrenamiento", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(OpcionesActivity.this, EntrenoProgramado.class);
+                Intent intent = new Intent(OpcionesActivity.this, Entrenamientos.class);
                 startActivity(intent);
             }
         });
@@ -178,7 +169,7 @@ public class OpcionesActivity extends AppCompatActivity
 
                 break;
             case R.id.nav_training:
-                Intent intentTraining = new Intent(OpcionesActivity.this.getBaseContext(), EntrenoProgramado.class);
+                Intent intentTraining = new Intent(OpcionesActivity.this.getBaseContext(), Entrenamientos.class);
                 startActivity(intentTraining);
                 break;
             case R.id.nav_sports:
@@ -186,9 +177,11 @@ public class OpcionesActivity extends AppCompatActivity
                 startActivity(intentSports);
                 break;
             case R.id.nav_settings:
-                Toast.makeText(this, "Configuraciones", Toast.LENGTH_SHORT).show();
-                Intent intentE= new Intent(OpcionesActivity.this.getBaseContext(), Entrenamientos.class);
-                startActivity(intentE);
+                //Toast.makeText(this, "Configuraciones", Toast.LENGTH_SHORT).show();
+                Drawable icon = getResources().getDrawable(R.drawable.ic_settings);
+                Toasty.normal(this, "Configuraciones", icon).show();
+                //Intent intentE= new Intent(OpcionesActivity.this.getBaseContext(), Entrenamientos.class);
+                //startActivity(intentE);
 
                 break;
             case R.id.nav_exit:

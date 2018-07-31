@@ -23,10 +23,9 @@ import com.practicavolley.ennovic.sportscontrol.Adapters.AdaptadorEntrenador;
 import com.practicavolley.ennovic.sportscontrol.Conexiones.Conexion;
 import com.practicavolley.ennovic.sportscontrol.Modelos.DeportesVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.EntrenadoresVo;
-import com.practicavolley.ennovic.sportscontrol.Modelos.Entreno;
 import com.practicavolley.ennovic.sportscontrol.Modelos.LigasVo;
 import com.practicavolley.ennovic.sportscontrol.Modelos.Usuario;
-import com.practicavolley.ennovic.sportscontrol.Preferences;
+import com.practicavolley.ennovic.sportscontrol.Clases.Preferences;
 import com.practicavolley.ennovic.sportscontrol.R;
 
 import org.json.JSONArray;
@@ -115,6 +114,7 @@ public class Entrenadores extends AppCompatActivity {
                                 for (int i = 0; i < coaches.length(); i++) {
                                     coach = new EntrenadoresVo();
                                     JSONObject objentrenadores = coaches.getJSONObject(i);
+                                    //Toast.makeText(Entrenadores.this, "JSON: "+objentrenadores, Toast.LENGTH_LONG).show();
 
                                     coach.setIdentrenador(String.valueOf(objentrenadores.optInt("entrenadorid")));
                                     coach.setNombreentrenador(objentrenadores.optString("nombre"));
@@ -130,17 +130,14 @@ public class Entrenadores extends AppCompatActivity {
                                 adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        //Toast.makeText(getApplicationContext(), "" + listaEntrenadores.get(recyclerEntrenadores.getChildAdapterPosition(view)).getIdentrenador(), Toast.LENGTH_SHORT).show();
-
+                                        Toast.makeText(getApplicationContext(), "" + listaEntrenadores.get(recyclerEntrenadores.getChildAdapterPosition(view)).getIdentrenador(), Toast.LENGTH_SHORT).show();
                                         //Envio de variables DATOS_USER
                                         Intent intentd = new Intent(Entrenadores.this, AtletasEntrenador.class);
                                         intentd.putExtra("DATOS_USER", user);
-
                                         //Envio variable iddeporte
                                         intentd.putExtra("identrenador", listaEntrenadores.get(recyclerEntrenadores.getChildAdapterPosition(view)).getIdentrenador());
                                         intentd.putExtra("liga", recuperamos_idliga);
                                         startActivity(intentd);
-
                                     }
                                 });
                                 //fin evento click
@@ -193,7 +190,7 @@ public class Entrenadores extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_home) {
             //Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
-            Intent i = new Intent(Entrenadores.this, OpcionesActivity.class);
+            Intent i = new Intent(Entrenadores.this, OpcionesActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(i);
             finish();
             return true;

@@ -95,11 +95,11 @@
                 android:textSize="15sp"
                 android:textStyle="bold|normal" />
 
-            <!--<TextView
+            <TextView
                 android:id="@+id/id_deporte_entrenadores_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Deporte" />-->
+                android:text="Deporte" />
 
             <TextView
                 android:id="@+id/id_liga_entrenadores_list"
