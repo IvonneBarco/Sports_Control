@@ -3,10 +3,12 @@ package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -23,6 +25,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -81,6 +85,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
     EditText e_latitud, e_longitud;
     LocationManager locationManager;
     LocationListener locationListener;
+    AlertDialog alertaGPS = null;
 
     //Notificacion
     NotificationCompat.Builder notificacion;
@@ -102,11 +107,15 @@ public class InicioEntrenamiento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //regresar...
-                finish();
+                DialogoRegresarrEntrenamiento();
+                //finish();
             }
         });
 
         // * Codigo flecha atras...
+
+
+        //final String recuperamos_identreno = getIntent().getStringExtra("identrenop");
 
 
         descripcion = (EditText) findViewById(R.id.descripcion_id);
@@ -115,8 +124,8 @@ public class InicioEntrenamiento extends AppCompatActivity {
         parar = (Button) findViewById(R.id.btnagregar3);
 
         //gps
-        //latitud = (TextView) findViewById(R.id.t_latitud_id);
         e_latitud = (EditText) findViewById(R.id.e_latitud_id);
+
 
         actualizar.setEnabled(false);
         parar.setEnabled(false);
@@ -134,9 +143,9 @@ public class InicioEntrenamiento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(InicioEntrenamiento.this, "ENTRENAMIENTO INICIADO", Toast.LENGTH_LONG).show();
-                Toasty.success(InicioEntrenamiento.this, "ENTRENAMIENTO INICIADO", Toast.LENGTH_LONG).show();
-                registrar();
+                DialogoIniciarEntrenamiento();
                 notificacionEntrenamientoIniciado();
+
             }
         });
 
@@ -144,8 +153,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(InicioEntrenamiento.this, "ENTRENAMIENTO DETENIDO", Toast.LENGTH_LONG).show();
-                Toasty.error(InicioEntrenamiento.this, "ENTRENAMIENTO DETENIDO", Toast.LENGTH_LONG).show();
-                pararentreno();
+                DialogoFinalizarEntrenamiento();
             }
         });
 
@@ -159,8 +167,18 @@ public class InicioEntrenamiento extends AppCompatActivity {
             }
         });
 
+       /* e_latitud.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    AlertaNoGps();
+                }
+            }
+        });*/
+
         //gps
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -532,6 +550,54 @@ public class InicioEntrenamiento extends AppCompatActivity {
 
     }
 
+    private void AlertaNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("El sistema GPS esta desactivado, ¿Desea activarlo?")
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        alertaGPS = builder.create();
+        alertaGPS
+                .show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            } else {
+                locationManager.removeUpdates(locationListener);
+            }
+        } else {
+            locationManager.removeUpdates(locationListener);
+        }
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        DialogoSalirEntrenamiento();
+    }
+
+
+
+
+    //Menu home
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -549,9 +615,10 @@ public class InicioEntrenamiento extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_home) {
             //Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
-            Intent i = new Intent(InicioEntrenamiento.this, OpcionesActivity.class);
+            /*Intent i = new Intent(InicioEntrenamiento.this, OpcionesActivity.class);
             startActivity(i);
-            finish();
+            finish();*/
+            DialogoRegresarrEntrenamiento();
             return true;
         }
 
@@ -559,7 +626,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
     }
 
     @SuppressLint("ResourceAsColor")
-    public void DesactivarBoton(Button boton, Boolean b){
+    public void DesactivarBoton(Button boton, Boolean b) {
         boton.setEnabled(false);
         boton.setBackgroundColor(R.color.colorGray);
     }
@@ -614,12 +681,111 @@ public class InicioEntrenamiento extends AppCompatActivity {
         notificationManager.notify(notificacionId, notificacion.build());
     }
 
-    @Override
+    /*@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Toast.makeText(this, "POR FAVOR PERMANEZCA EN ESTA VISTA", Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }*/
+
+
+    public void DialogoSalirEntrenamiento(){
+        android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(InicioEntrenamiento.this);
+        alerta.setMessage("Tenga en cuenta que si usted ha iniciado el entrenamiento y sale de esta pantalla, este se perdera y no podrá iniciarlo nuevamente")
+                .setCancelable(false)
+                .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Intent intent = new Intent(InicioEntrenamiento.this, OpcionesActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Codigo de continuar en la app
+                        dialogInterface.cancel();
+                    }
+                });
+        android.support.v7.app.AlertDialog titulo = alerta.create();
+        titulo.setTitle("¿Está seguro que desea salir?");
+        titulo.show();
+    }
+
+
+    public void DialogoRegresarrEntrenamiento(){
+        android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(InicioEntrenamiento.this);
+        alerta.setMessage("")
+                .setCancelable(false)
+                .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Intent intent = new Intent(InicioEntrenamiento.this, OpcionesActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Codigo de continuar en la app
+                        dialogInterface.cancel();
+                    }
+                });
+        android.support.v7.app.AlertDialog titulo = alerta.create();
+        titulo.setTitle("¿Salir del entrenamiento?");
+        titulo.show();
+    }
+
+    public void DialogoIniciarEntrenamiento(){
+        android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(InicioEntrenamiento.this);
+        alerta.setMessage("Presione SI para iniciar el entrenamiento o CANCELAR para regresar a la pantalla anterior")
+                .setCancelable(false)
+                .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toasty.success(InicioEntrenamiento.this, "ENTRENAMIENTO INICIADO", Toast.LENGTH_LONG).show();
+                        registrar();
+                    }
+                })
+                .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Codigo de continuar en la app
+                        dialogInterface.cancel();
+                    }
+                });
+        android.support.v7.app.AlertDialog titulo = alerta.create();
+        titulo.setTitle("¿Iniciar Entrenamiento?");
+        titulo.show();
+    }
+
+
+    public void DialogoFinalizarEntrenamiento(){
+        android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(InicioEntrenamiento.this);
+        alerta.setMessage("Presione SI para finalizar el entrenamiento o CANCELAR para continuar en el mismo")
+                .setCancelable(false)
+                .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toasty.error(InicioEntrenamiento.this, "ENTRENAMIENTO DETENIDO", Toast.LENGTH_LONG).show();
+                        pararentreno();
+                    }
+                })
+                .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Codigo de continuar en la app
+                        dialogInterface.cancel();
+                    }
+                });
+        android.support.v7.app.AlertDialog titulo = alerta.create();
+        titulo.setTitle("¿Finalizar Entrenamiento?");
+        titulo.show();
     }
 }

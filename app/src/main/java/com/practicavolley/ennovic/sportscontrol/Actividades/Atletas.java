@@ -101,8 +101,8 @@ public class Atletas extends AppCompatActivity {
 
                             if (athletes.length() <= 0) {
                                 //Toast.makeText(Atletas.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
-                                Drawable icon = getResources().getDrawable(R.drawable.ic_settings);
-                                Toasty.normal(Atletas.this, "Configuraciones", icon).show();
+                                Drawable icon = getResources().getDrawable(R.drawable.ic_empty);
+                                Toasty.normal(Atletas.this, "No se han encontrado datos", icon).show();
 
                             } else {
 
@@ -124,7 +124,9 @@ public class Atletas extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(Atletas.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(Atletas.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
+                            Drawable icon = getResources().getDrawable(R.drawable.ic_sin_conexion);
+                            Toasty.normal(Atletas.this, "No se puede establecer una conexión", icon).show();
                         }
 
                     }

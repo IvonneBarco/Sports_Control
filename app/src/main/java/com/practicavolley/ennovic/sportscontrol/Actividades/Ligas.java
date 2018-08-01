@@ -1,6 +1,7 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,6 +35,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import es.dmoral.toasty.Toasty;
 
 public class Ligas extends AppCompatActivity {
 
@@ -107,7 +110,10 @@ public class Ligas extends AppCompatActivity {
                             JSONArray ligas = objresultado.getJSONArray("ligas");
 
                             if (ligas.length()<=0){
-                                Toast.makeText(Ligas.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(Ligas.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
+                                Drawable icon = getResources().getDrawable(R.drawable.ic_empty);
+                                Toasty.normal(Ligas.this, "No se han encontrado datos", icon).show();
+
 
                             }else{
 
@@ -156,7 +162,10 @@ public class Ligas extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(Ligas.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(Ligas.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
+                            Drawable icon = getResources().getDrawable(R.drawable.ic_sin_conexion);
+                            Toasty.normal(Ligas.this, "No se puede establecer una conexión", icon).show();
+
                         }
 
                     }

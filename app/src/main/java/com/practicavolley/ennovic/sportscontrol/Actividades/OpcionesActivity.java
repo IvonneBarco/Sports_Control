@@ -1,9 +1,11 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -148,9 +150,10 @@ public class OpcionesActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
-            Intent i = new Intent(OpcionesActivity.this, LoginActivity.class);
+            DialogoSalir();
+            /*Intent i = new Intent(OpcionesActivity.this, LoginActivity.class);
             startActivity(i);
-            finish();
+            finish();*/
             return true;
         }
 
@@ -182,16 +185,40 @@ public class OpcionesActivity extends AppCompatActivity
                 Toasty.normal(this, "Configuraciones", icon).show();
                 //Intent intentE= new Intent(OpcionesActivity.this.getBaseContext(), Entrenamientos.class);
                 //startActivity(intentE);
-
                 break;
             case R.id.nav_exit:
-                Toast.makeText(this, "Salir", Toast.LENGTH_SHORT).show();
+                DialogoSalir();
                 break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void DialogoSalir(){
+        AlertDialog.Builder alerta = new AlertDialog.Builder(OpcionesActivity.this);
+        alerta.setMessage("¿Desea salir de la aplicación?")
+                .setCancelable(false)
+                .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Codigo de cerrar sesión
+                        Intent intent = new Intent(OpcionesActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Codigo de continuar en la app
+                        dialogInterface.cancel();
+                    }
+                });
+        AlertDialog titulo = alerta.create();
+        titulo.setTitle("Cerrar Sesión");
+        titulo.show();
     }
 
 }

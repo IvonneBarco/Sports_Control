@@ -1,6 +1,7 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,6 +36,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import es.dmoral.toasty.Toasty;
 
 public class AtletasEntrenador extends AppCompatActivity {
 
@@ -102,7 +105,9 @@ public class AtletasEntrenador extends AppCompatActivity {
                             JSONArray athletes = objresultado.getJSONArray("athleta");
 
                             if (athletes.length() <= 0) {
-                                Toast.makeText(AtletasEntrenador.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(AtletasEntrenador.this, "NO HAY DATOS", Toast.LENGTH_SHORT).show();
+                                Drawable icon = getResources().getDrawable(R.drawable.ic_empty);
+                                Toasty.normal(AtletasEntrenador.this, "No se han encontrado datos", icon).show();
 
                             } else {
 
@@ -124,7 +129,9 @@ public class AtletasEntrenador extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(AtletasEntrenador.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(AtletasEntrenador.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
+                            Drawable icon = getResources().getDrawable(R.drawable.ic_sin_conexion);
+                            Toasty.normal(AtletasEntrenador.this, "No se puede establecer una conexión", icon).show();
                         }
 
                     }

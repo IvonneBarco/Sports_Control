@@ -1,6 +1,7 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,6 +36,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import es.dmoral.toasty.Toasty;
 
 public class Entrenadores extends AppCompatActivity {
 
@@ -130,7 +133,7 @@ public class Entrenadores extends AppCompatActivity {
                                 adapter.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Toast.makeText(getApplicationContext(), "" + listaEntrenadores.get(recyclerEntrenadores.getChildAdapterPosition(view)).getIdentrenador(), Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(getApplicationContext(), "" + listaEntrenadores.get(recyclerEntrenadores.getChildAdapterPosition(view)).getIdentrenador(), Toast.LENGTH_SHORT).show();
                                         //Envio de variables DATOS_USER
                                         Intent intentd = new Intent(Entrenadores.this, AtletasEntrenador.class);
                                         intentd.putExtra("DATOS_USER", user);
@@ -145,7 +148,9 @@ public class Entrenadores extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(Entrenadores.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(Entrenadores.this, "NO HAY CONEXIÓN", Toast.LENGTH_SHORT).show();
+                            Drawable icon = getResources().getDrawable(R.drawable.ic_empty);
+                            Toasty.normal(Entrenadores.this, "No se ha encontrado datos", icon).show();
                         }
 
                     }

@@ -15,15 +15,15 @@
         <item
             android:id="@+id/nav_training"
             android:icon="@drawable/ic_training"
-            android:title="Entrenamiento Programado" />
+            android:title="Entrenamientos" />
         <item
             android:id="@+id/nav_sports"
             android:icon="@drawable/ic_sports"
             android:title="Deportes" />
-        <item
+        <!--<item
             android:id="@+id/nav_plans"
             android:icon="@drawable/ic_sesion"
-            android:title="Cargar Planes" />
+            android:title="Cargar Planes" />-->
     </group>
 
     <item android:title="Mi cuenta">
