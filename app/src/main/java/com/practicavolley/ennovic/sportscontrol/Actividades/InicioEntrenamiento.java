@@ -3,6 +3,7 @@ package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -12,24 +13,32 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -40,6 +49,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -61,11 +72,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
+
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class InicioEntrenamiento extends AppCompatActivity {
 
@@ -93,6 +110,16 @@ public class InicioEntrenamiento extends AppCompatActivity {
     String channelId = "my_channerl_01";
     long[] pattern = new long[]{1000, 500, 1000};
 
+    //Foto
+    /*ImageButton btnFoto;
+    ImageView imgFoto;
+    Intent intentCamera;
+    final static int cons = 0;
+    Bitmap bmp;*/
+
+    ImageButton btnFoto;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +143,19 @@ public class InicioEntrenamiento extends AppCompatActivity {
 
 
         //final String recuperamos_identreno = getIntent().getStringExtra("identrenop");
+
+        //Foto
+        //checkCameraPermission();
+        //init();
+
+        btnFoto = (ImageButton)findViewById(R.id.btnFoto);
+
+        /*btnFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abriCamara();
+            }
+        });*/
 
 
         descripcion = (EditText) findViewById(R.id.descripcion_id);
@@ -144,7 +184,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(InicioEntrenamiento.this, "ENTRENAMIENTO INICIADO", Toast.LENGTH_LONG).show();
                 DialogoIniciarEntrenamiento();
-                notificacionEntrenamientoIniciado();
+
 
             }
         });
@@ -232,6 +272,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Entreno user = new Entreno();
+
                 try {
                     JSONObject objresultado = new JSONObject(response);
                     String estadox = objresultado.get("estado").toString();
@@ -246,6 +287,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
                             String cadena = marcados + "";
 
                             registrarAthletas(tmp, cadena);
+
                             chekedguardList.add(marcados);
 
                             chekedguardList.remove(marcados);
@@ -256,6 +298,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
                         actualizar.setEnabled(true);
                         parar.setEnabled(true);
                         spinner.setEnabled(false);
+
 
 
                     }
@@ -278,6 +321,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
                 params.put("gps", e_latitud.getText().toString());
                 params.put("entrenop", tmp);
                 params.put("descripcion", descripcion.getText().toString());
+                //params.put("foto",foto);
 
                 return params;
             }
@@ -594,8 +638,6 @@ public class InicioEntrenamiento extends AppCompatActivity {
     }
 
 
-
-
     //Menu home
 
     @Override
@@ -691,7 +733,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
     }*/
 
 
-    public void DialogoSalirEntrenamiento(){
+    public void DialogoSalirEntrenamiento() {
         android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(InicioEntrenamiento.this);
         alerta.setMessage("Tenga en cuenta que si usted ha iniciado el entrenamiento y sale de esta pantalla, este se perdera y no podrá iniciarlo nuevamente")
                 .setCancelable(false)
@@ -717,7 +759,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
     }
 
 
-    public void DialogoRegresarrEntrenamiento(){
+    public void DialogoRegresarrEntrenamiento() {
         android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(InicioEntrenamiento.this);
         alerta.setMessage("")
                 .setCancelable(false)
@@ -742,13 +784,14 @@ public class InicioEntrenamiento extends AppCompatActivity {
         titulo.show();
     }
 
-    public void DialogoIniciarEntrenamiento(){
+    public void DialogoIniciarEntrenamiento() {
         android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(InicioEntrenamiento.this);
         alerta.setMessage("Presione SI para iniciar el entrenamiento o CANCELAR para regresar a la pantalla anterior")
                 .setCancelable(false)
                 .setPositiveButton("SI", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        notificacionEntrenamientoIniciado();
                         Toasty.success(InicioEntrenamiento.this, "ENTRENAMIENTO INICIADO", Toast.LENGTH_LONG).show();
                         registrar();
                     }
@@ -766,7 +809,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
     }
 
 
-    public void DialogoFinalizarEntrenamiento(){
+    public void DialogoFinalizarEntrenamiento() {
         android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(InicioEntrenamiento.this);
         alerta.setMessage("Presione SI para finalizar el entrenamiento o CANCELAR para continuar en el mismo")
                 .setCancelable(false)
@@ -788,4 +831,47 @@ public class InicioEntrenamiento extends AppCompatActivity {
         titulo.setTitle("¿Finalizar Entrenamiento?");
         titulo.show();
     }
+
+    /*public void init() {
+        btnFoto = (ImageButton) findViewById(R.id.btnFoto);
+        btnFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id;
+                id=view.getId();
+                switch (id){
+                    case R.id.btnFoto:
+                        intentCamera = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intentCamera,cons);
+                        break;
+                }
+            }
+        });
+
+        imgFoto = (ImageView) findViewById(R.id.imgFoto);
+    }
+
+    private void checkCameraPermission() {
+        int permissionCheck = ContextCompat.checkSelfPermission(
+                this, Manifest.permission.CAMERA);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            Log.i("Mensaje", "No se tiene permiso para la camara !.");
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 225);
+        } else {
+            Log.i("Mensaje", "Tienes permiso para usar la camara.");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if (resultCode== Activity.RESULT_OK){
+            Bundle ext = data.getExtras();
+            bmp = (Bitmap)ext.get("data");
+            imgFoto.setImageBitmap(bmp);
+        }
+    }*/
+
+
 }
+

@@ -187,6 +187,7 @@ public class OpcionesActivity extends AppCompatActivity
                 //startActivity(intentE);
                 break;
             case R.id.nav_exit:
+                Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
                 DialogoSalir();
                 break;
         }
