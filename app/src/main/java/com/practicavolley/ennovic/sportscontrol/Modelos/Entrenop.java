@@ -14,6 +14,7 @@ public class Entrenop implements Parcelable {
     private String semana_id;
     private String descripcion;
     private String gps;
+    private String foto;
 
     public String getId() {
         return id;
@@ -83,6 +84,10 @@ public class Entrenop implements Parcelable {
 
     public void setGps(String gps) { this.gps = gps;}
 
+    public String getFoto() { return foto;}
+
+    public void setFoto(String foto) { this.foto = foto;}
+
     public static Creator<Entrenop> getCREATOR() {
         return CREATOR;
     }
@@ -100,6 +105,7 @@ public class Entrenop implements Parcelable {
         setSemana_id(in.readString());
         setDescripcion(in.readString());
         setGps(in.readString());
+        setFoto(in.readString());
     }
 
     public static final Creator<Entrenop> CREATOR = new Creator<Entrenop>() {
@@ -131,6 +137,7 @@ public class Entrenop implements Parcelable {
         dest.writeString(getSemana_id());
         dest.writeString(getDescripcion());
         dest.writeString(getGps());
+        dest.writeString(getFoto());
     }
 
 }

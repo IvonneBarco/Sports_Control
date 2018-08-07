@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Actividades.SplashSreen" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        <activity
+            android:name=".Actividades.SplashSreen"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,7 +40,8 @@
             android:logo="@mipmap/ic_launcher"
             android:theme="@style/AppTheme" />
         <activity android:name=".Actividades.Entrenamientos" />
-        <activity android:name=".Actividades.LoginActivity"/>
+        <activity android:name=".Actividades.LoginActivity" />
+        <activity android:name=".Actividades.CargarImagen"></activity>
     </application>
 
 </manifest>

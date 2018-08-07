@@ -183,8 +183,8 @@ public class OpcionesActivity extends AppCompatActivity
                 //Toast.makeText(this, "Configuraciones", Toast.LENGTH_SHORT).show();
                 Drawable icon = getResources().getDrawable(R.drawable.ic_settings);
                 Toasty.normal(this, "Configuraciones", icon).show();
-                //Intent intentE= new Intent(OpcionesActivity.this.getBaseContext(), Entrenamientos.class);
-                //startActivity(intentE);
+                Intent intentE= new Intent(OpcionesActivity.this.getBaseContext(), CargarImagen.class);
+                startActivity(intentE);
                 break;
             case R.id.nav_exit:
                 Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
