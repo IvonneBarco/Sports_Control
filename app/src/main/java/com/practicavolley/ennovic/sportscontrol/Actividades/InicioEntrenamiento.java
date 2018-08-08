@@ -733,6 +733,7 @@ public class InicioEntrenamiento extends AppCompatActivity {
     }*/
 
 
+
     public void DialogoSalirEntrenamiento() {
         android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(InicioEntrenamiento.this);
         alerta.setMessage("Tenga en cuenta que si usted ha iniciado el entrenamiento y sale de esta pantalla, este se perdera y no podrá iniciarlo nuevamente")
