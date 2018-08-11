@@ -1,3 +1,5 @@
+//CARGAR IMAGEN
+
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
 import android.app.ProgressDialog;
@@ -71,6 +73,10 @@ public class CargarImagen extends AppCompatActivity {
 
     StringRequest stringRequest;
 
+    ////////////****************
+
+    //****************************//////
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +87,8 @@ public class CargarImagen extends AppCompatActivity {
         campoProfesion = (EditText) findViewById(R.id.campoProfesion);
         botonRegistro = (Button) findViewById(R.id.btnRegistrar);
         btnFoto = (Button) findViewById(R.id.btn_Foto);
+
+        ///////
 
         imgFoto = (ImageView) findViewById(R.id.imgFoto);
 
@@ -310,7 +318,7 @@ public class CargarImagen extends AppCompatActivity {
 
 
         //String url = "http://192.168.1.13/ejemploBDRemota/wsJSONRegistroMovil.php";
-        String url = "http://192.168.0.14/celular/vista/registrar-entrenamientos.php";
+        String url = "http://192.168.1.13/celular/vista/registrar-entrenamientos.php";
 
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
