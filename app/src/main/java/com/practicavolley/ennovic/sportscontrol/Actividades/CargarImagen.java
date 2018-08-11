@@ -2,13 +2,18 @@
 
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -16,17 +21,23 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -62,11 +73,12 @@ public class CargarImagen extends AppCompatActivity {
     private static final int COD_FOTO = 20;
 
     EditText campoNombre, campoDocumento, campoProfesion;
-    Button botonRegistro, btnFoto;
+    Button botonRegistro;
+    ImageButton btnFoto;
     ImageView imgFoto;
     ProgressDialog progreso;
 
-    RelativeLayout layoutRegistrar;//permisos
+    CoordinatorLayout layoutRegistrar;//permisos
 
     // RequestQueue request;
     JsonObjectRequest jsonObjectRequest;
@@ -74,6 +86,13 @@ public class CargarImagen extends AppCompatActivity {
     StringRequest stringRequest;
 
     ////////////****************
+    //gps
+    TextView latitud, longitud;
+    private String gpsrp, gpsfin;
+    EditText e_latitud, e_longitud;
+    LocationManager locationManager;
+    LocationListener locationListener;
+    android.app.AlertDialog alertaGPS = null;
 
     //****************************//////
 
@@ -82,18 +101,67 @@ public class CargarImagen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cargar_imagen);
 
+        // Codigo flecha atras...
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white));
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //regresar...
+                DialogoRegresarrEntrenamiento();
+                //finish();
+            }
+        });
+
+        // * Codigo flecha atras...
+
         campoDocumento = (EditText) findViewById(R.id.campoDoc);
         campoNombre = (EditText) findViewById(R.id.campoNombre);
         campoProfesion = (EditText) findViewById(R.id.campoProfesion);
         botonRegistro = (Button) findViewById(R.id.btnRegistrar);
-        btnFoto = (Button) findViewById(R.id.btn_Foto);
+        btnFoto = (ImageButton) findViewById(R.id.btnFoto);
 
         ///////
+        //gps
+        e_latitud = (EditText) findViewById(R.id.campoProfesion);
+        campoDocumento.setText(String.valueOf(getIntent().getStringExtra("nom_entrenamiento")));
+        //gps
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                updateLocationInfo(location);
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+            }
+        };
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } else {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (lastKnownLocation != null) {
+                updateLocationInfo(lastKnownLocation);
+            }
+        }
 
         imgFoto = (ImageView) findViewById(R.id.imgFoto);
 
 
-        layoutRegistrar = (RelativeLayout) findViewById(R.id.idLayoutRegistrar);
+        layoutRegistrar = (CoordinatorLayout) findViewById(R.id.idLayoutRegistrar);
 
         //Permisos
         if (solicitaPermisosVersionesSuperiores()) {
@@ -267,6 +335,10 @@ public class CargarImagen extends AppCompatActivity {
         } else {
             solicitarPermisosManual();
         }
+
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startListening();
+        }
     }
 
     private void solicitarPermisosManual() {
@@ -346,7 +418,8 @@ public class CargarImagen extends AppCompatActivity {
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                String documento = campoDocumento.getText().toString();
+                //String documento = campoDocumento.getText().toString();
+                String documento = String.valueOf(getIntent().getStringExtra("id_entrenamiento"));
                 String nombre = campoNombre.getText().toString();
                 String profesion = campoProfesion.getText().toString();
 
@@ -359,12 +432,12 @@ public class CargarImagen extends AppCompatActivity {
                 parametros.put("imagen", imagen);*/
 
                 //parametros.put("id", "65");
-                parametros.put("horainicio", "1:00");
-                parametros.put("horafin", "2:00");
-                parametros.put("fecha", "2018/08/07");
-                parametros.put("gps", "11");
-                parametros.put("entrenoprogramado_id", "2");
-                parametros.put("descripcion", "midescripcion");
+                //parametros.put("horainicio", "1:00");
+                //parametros.put("horafin", "2:00");
+                //parametros.put("fecha", "2018/08/07");
+                parametros.put("gps", e_latitud.getText().toString());
+                parametros.put("entrenoprogramado_id", documento);
+                parametros.put("descripcion", nombre);
                 parametros.put("imagen", imagen);
 
                 return parametros;
@@ -383,6 +456,97 @@ public class CargarImagen extends AppCompatActivity {
         String imagenString = Base64.encodeToString(imagenByte, Base64.DEFAULT);
 
         return imagenString;
+    }
+
+    //gps
+    /*@Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startListening();
+        }
+    }*/
+
+    public void startListening() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        }
+    }
+
+    public void updateLocationInfo(Location location) {
+
+
+        //latitud.setText("Latitud: " + Double.toString(location.getLatitude()));
+        //longitud.setText("Longitud: " + Double.toString(location.getLongitude()));
+        e_latitud.setText("" + Double.toString(location.getLatitude()) + " , " + "" + Double.toString(location.getLongitude()));
+        gpsrp = ("" + Double.toString(location.getLatitude()) + " , " + "" + Double.toString(location.getLongitude()));
+        gpsfin = ("" + Double.toString(location.getLatitude()) + " , " + "" + Double.toString(location.getLongitude()));
+        //latitud.setText("Latitud: " + Double.toString(location.getLatitude()) + " - " + "Longitud: " + Double.toString(location.getLongitude()));
+        //e_longitud.setText("Longitud: " + Double.toString(location.getLongitude()));
+
+    }
+
+    private void AlertaNoGps() {
+        final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setMessage("El sistema GPS esta desactivado, ¿Desea activarlo?")
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        alertaGPS = builder.create();
+        alertaGPS
+                .show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            } else {
+                locationManager.removeUpdates(locationListener);
+            }
+        } else {
+            locationManager.removeUpdates(locationListener);
+        }
+
+
+    }
+
+    public void DialogoRegresarrEntrenamiento() {
+        android.support.v7.app.AlertDialog.Builder alerta = new android.support.v7.app.AlertDialog.Builder(CargarImagen.this);
+        alerta.setMessage("")
+                .setCancelable(false)
+                .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Intent intent = new Intent(CargarImagen.this, Entrenamientos.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Codigo de continuar en la app
+                        dialogInterface.cancel();
+                    }
+                });
+        android.support.v7.app.AlertDialog titulo = alerta.create();
+        titulo.setTitle("¿Salir del entrenamiento?");
+        titulo.show();
     }
 
 }

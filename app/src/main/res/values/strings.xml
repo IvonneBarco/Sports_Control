@@ -32,4 +32,7 @@
     <string name="action_home">Inicio</string>
     <string name="str_switch_login">Recordarme</string>
     <string name="action_nuevo_entrenamiento">Adicionar Entrenamiento</string>
+    <string name="entrenamiento">Nombre del Entrenamiento</string>
+    <string name="action_descripcion_entrenamiento">¿Alguna novedad antes de iniciar el entrenamiento?</string>
+
 </resources>

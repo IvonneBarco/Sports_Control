@@ -129,9 +129,10 @@ public class Entrenamientos extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "" + listaEntrenamiento.get(recyclerEntrenamientos.getChildAdapterPosition(view)).getId_entrenamiento(), Toast.LENGTH_SHORT).show();
 
                                         //Envio de variables DATOS_USER
-                                        Intent intent = new Intent(Entrenamientos.this, InicioEntrenamiento.class);
+                                        Intent intent = new Intent(Entrenamientos.this, CargarImagen.class);
                                         //Envio variable identrenamiento
-                                        intent.putExtra("id", listaEntrenamiento.get(recyclerEntrenamientos.getChildAdapterPosition(view)).getId_entrenamiento());
+                                        intent.putExtra("id_entrenamiento", listaEntrenamiento.get(recyclerEntrenamientos.getChildAdapterPosition(view)).getId_entrenamiento());
+                                        intent.putExtra("nom_entrenamiento", listaEntrenamiento.get(recyclerEntrenamientos.getChildAdapterPosition(view)).getNombre_entrenamiento());
                                         startActivity(intent);
 
                                     }

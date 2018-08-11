@@ -1,29 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idLayoutRegistrar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/idLayoutRegistrar"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
     tools:context=".Actividades.CargarImagen">
 
+    <ProgressBar
+        android:id="@+id/home_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="10dp">
+            app:layout_anchor="@+id/linearLayout"
+            app:layout_anchorGravity="right|center">
+
+            <include layout="@layout/actionbar_toolbar" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:paddingTop="10dp"
+                    android:text="INICIAR ENTRENAMIENTO"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp"
+                    android:textStyle="bold|normal" />
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:theme="@style/EditTextBlack">
+
+                    <EditText
+                        android:id="@+id/campoDoc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/entrenamiento"
+                        android:enabled="false"
+                        android:inputType="text"
+                        android:maxLines="5"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:theme="@style/EditTextBlack">
+
+                    <EditText
+                        android:id="@+id/campoProfesion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ubicación del Entrenamiento"
+                        android:inputType="text"
+                        android:enabled="false"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:theme="@style/EditTextBlack">
+
+                    <EditText
+                        android:id="@+id/campoNombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/action_descripcion_entrenamiento"
+                        android:inputType="text"
+                        android:maxLines="5"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/imgFoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:src="@drawable/img_base"
+                    android:layout_gravity="center"/>
+
+                <ImageButton
+                    android:id="@+id/btnFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_photo_camera"
+                    android:theme="@style/StyleButton"
+                    android:layout_gravity="center"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnRegistrar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/ic_play_circle_filled_black_24dp"
+                        android:drawableTint="@color/colorWhite"
+                        android:text="Iniciar "
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:theme="@style/StyleButton"
+                        tools:enabled="false" />
+
+                    <Button
+                        android:id="@+id/btnagregar2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/ic_update_black_24dp"
+                        android:drawableTint="@color/colorWhite"
+                        android:text="Actualizar "
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:theme="@style/StyleButton" />
+
+
+                    <Button
+                        android:id="@+id/btnagregar3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableRight="@drawable/ic_stop_black_24dp"
+                        android:drawableTint="@color/colorWhite"
+                        android:text="Parar "
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:theme="@style/StyleButton" />
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="REGISTRAR USUARIOS"
-                android:gravity="center"
-                android:textSize="20sp"
+                android:layout_marginBottom="15dp"
+                android:paddingTop="10dp"
+                android:text="Deportistas Asistentes"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="22sp"
+                android:textStyle="bold|normal" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/base_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+
+            </ScrollView>
+        </LinearLayout>
+    </ScrollView>
+
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="REGISTRAR USUARIOS"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,15 +217,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:hint="Documento"/>
+                    android:hint="Id entrenamiento" />
 
                 <Button
                     android:id="@+id/btn_Foto"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:text="Foto"
                     android:layout_gravity="center"
                     android:background="@color/colorAccent"
+                    android:text="Foto"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>
@@ -52,23 +234,23 @@
                 android:id="@+id/campoNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre"/>
+                android:hint="Descripción" />
 
             <EditText
                 android:id="@+id/campoProfesion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Profesion"/>
+                android:hint="ubicación" />
 
 
             <ImageView
                 android:id="@+id/imgFoto"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:src="@drawable/img_base"
-                android:layout_gravity="center"
                 android:layout_below="@+id/linearLayout"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:src="@drawable/img_base" />
 
         </LinearLayout>
 
@@ -76,14 +258,12 @@
             android:id="@+id/btnRegistrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registrar"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:background="@color/colorAccent"
-            android:textColor="@android:color/white" />
+            android:text="Registrar"
+            android:textColor="@android:color/white" />-->
 
 
-
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
