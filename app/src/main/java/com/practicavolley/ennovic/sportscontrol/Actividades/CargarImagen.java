@@ -772,7 +772,7 @@ public class CargarImagen extends AppCompatActivity {
         notificacion.setVibrate(pattern);
         //Defino que la notificacion sea permamente
         //notificacion.setOngoing(true);
-        Intent notificationIntent = new Intent(CargarImagen.this, InicioEntrenamiento.class);
+        Intent notificationIntent = new Intent(CargarImagen.this, CargarImagen.class);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
 
