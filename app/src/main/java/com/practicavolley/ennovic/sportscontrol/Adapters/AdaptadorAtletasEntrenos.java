@@ -37,7 +37,7 @@ public class AdaptadorAtletasEntrenos extends RecyclerView.Adapter<AdaptadorAtle
         public ViewHolderAtletas(View itemView) {
             super(itemView);
             //etiqueta_id_atleta = (TextView)itemView.findViewById(R.id.id_atleta_list);
-            etiqueta_nombre_atleta = (TextView)itemView.findViewById(R.id.id_nombre_atleta_entreno_list);
+            etiqueta_nombre_atleta = (TextView)itemView.findViewById(R.id.id_nombre_atleta_list);
             etiqueta_foto = (ImageView)itemView.findViewById(R.id.id_imagen_atleta_list);
         }
     }

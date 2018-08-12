@@ -1,5 +1,6 @@
 package com.practicavolley.ennovic.sportscontrol.Actividades;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,10 +44,17 @@ public class Entrenamientos extends AppCompatActivity {
     //Referencia al recycler
     RecyclerView recyclerEntrenamientos;
 
+    //barra de progreso
+    ProgressDialog progreso;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrenos);
+
+        progreso = new ProgressDialog(this);
+        progreso.setMessage("Cargando entramientos...");
+        progreso.show();
 
         IDUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ID_USUARIO_LOGIN);
         ROLEUSUARIO = Preferences.obtenerPreferencesString(this, Preferences.PREFERENCE_ROLE_USUARIO_LOGIN);
@@ -103,6 +113,8 @@ public class Entrenamientos extends AppCompatActivity {
                                 Toasty.normal(Entrenamientos.this, "No se ha encontrado datos", icon).show();
                             } else {
 
+                                progreso.hide();
+
                                 for (int i = 0; i < entrenamientos.length(); i++){
                                     entrenamiento = new EntrenamientoVo();
                                     JSONObject objEntrenamientos = entrenamientos.getJSONObject(i);
@@ -134,6 +146,7 @@ public class Entrenamientos extends AppCompatActivity {
                                         intent.putExtra("id_entrenamiento", listaEntrenamiento.get(recyclerEntrenamientos.getChildAdapterPosition(view)).getId_entrenamiento());
                                         intent.putExtra("nom_entrenamiento", listaEntrenamiento.get(recyclerEntrenamientos.getChildAdapterPosition(view)).getNombre_entrenamiento());
                                         startActivity(intent);
+                                        finish();
 
                                     }
                                 });
@@ -172,5 +185,31 @@ public class Entrenamientos extends AppCompatActivity {
         long hoy = System.currentTimeMillis();
         String mifecha = new SimpleDateFormat("yyyy/MM/dd").format(hoy);
         //Toast.makeText(this, "HOY ES: "+ mifecha, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_home) {
+            //Preferences.savePreferencesBoolean(this, false, Preferences.PREFERENCES_ESTADO_SWITCH);
+            Intent i = new Intent(Entrenamientos.this, OpcionesActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(i);
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

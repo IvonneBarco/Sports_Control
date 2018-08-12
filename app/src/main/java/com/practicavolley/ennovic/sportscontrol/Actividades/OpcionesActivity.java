@@ -82,6 +82,8 @@ public class OpcionesActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Toast.makeText(OpcionesActivity.this, "Grupo de apoyo", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(OpcionesActivity.this, ListaAtletas.class);
+                startActivity(intent);
             }
         });
 

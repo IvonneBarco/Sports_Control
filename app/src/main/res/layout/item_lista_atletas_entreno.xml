@@ -11,26 +11,34 @@
         android:layout_margin="10dp">
 
         <ImageView
-            android:id="@+id/id_imagen_atleta_list"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:id="@+id/id_imagen_atleta_elist"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@mipmap/ic_launcher"/>
 
         <LinearLayout
             android:id="@+id/layout_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@id/id_imagen_atleta_list">
+            android:layout_toRightOf="@id/id_imagen_atleta_elist">
 
             <CheckBox
-                android:id="@+id/id_nombre_atleta_entreno_list"
+                android:id="@+id/id_atleta_entreno_elist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NOMBRE COMPLETO"
+                android:text="1"/>
+
+            <TextView
+                android:id="@+id/id_nombre_atleta_entreno_elist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textStyle="bold|normal"/>
+                android:textStyle="bold|normal"
+                android:text="NOMBRE ATLETA"/>
+
+
         </LinearLayout>
 
 

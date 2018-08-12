@@ -56,14 +56,14 @@
                     android:layout_marginBottom="10dp"
                     android:theme="@style/EditTextBlack">
 
-                    <EditText
-                        android:id="@+id/campoDoc"
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/campoEntrenamiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/entrenamiento"
                         android:enabled="false"
+                        android:hint="@string/entrenamiento"
                         android:inputType="text"
-                        android:maxLines="5"/>
+                        android:maxLines="5" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -73,13 +73,13 @@
                     android:layout_marginBottom="10dp"
                     android:theme="@style/EditTextBlack">
 
-                    <EditText
-                        android:id="@+id/campoProfesion"
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/campoGps"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="false"
                         android:hint="Ubicación del Entrenamiento"
-                        android:inputType="text"
-                        android:enabled="false"/>
+                        android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -89,13 +89,13 @@
                     android:layout_marginBottom="10dp"
                     android:theme="@style/EditTextBlack">
 
-                    <EditText
-                        android:id="@+id/campoNombre"
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/campoDescripcion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/action_descripcion_entrenamiento"
                         android:inputType="text"
-                        android:maxLines="5"/>
+                        android:maxLines="5" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -103,61 +103,16 @@
                     android:id="@+id/imgFoto"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:src="@drawable/img_base"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_base" />
 
                 <ImageButton
                     android:id="@+id/btnFoto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:src="@drawable/ic_photo_camera"
-                    android:theme="@style/StyleButton"
-                    android:layout_gravity="center"/>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnRegistrar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableRight="@drawable/ic_play_circle_filled_black_24dp"
-                        android:drawableTint="@color/colorWhite"
-                        android:text="Iniciar "
-                        android:textSize="12dp"
-                        android:textStyle="bold"
-                        android:theme="@style/StyleButton"
-                        tools:enabled="false" />
-
-                    <Button
-                        android:id="@+id/btnagregar2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableRight="@drawable/ic_update_black_24dp"
-                        android:drawableTint="@color/colorWhite"
-                        android:text="Actualizar "
-                        android:textSize="12dp"
-                        android:textStyle="bold"
-                        android:theme="@style/StyleButton" />
-
-
-                    <Button
-                        android:id="@+id/btnagregar3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableRight="@drawable/ic_stop_black_24dp"
-                        android:drawableTint="@color/colorWhite"
-                        android:text="Parar "
-                        android:textSize="12dp"
-                        android:textStyle="bold"
-                        android:theme="@style/StyleButton" />
-                </LinearLayout>
+                    android:theme="@style/StyleButton" />
 
             </LinearLayout>
 
@@ -176,6 +131,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/Recycler_Asistencia_Atletas_Id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </ScrollView>
+
+            <!--
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
                 <LinearLayout
                     android:id="@+id/base_layout"
                     android:layout_width="match_parent"
@@ -184,86 +152,56 @@
                     android:orientation="vertical">
 
                 </LinearLayout>
-
-
             </ScrollView>
-        </LinearLayout>
-    </ScrollView>
-
-
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="REGISTRAR USUARIOS"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            -->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/campoDoc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:hint="Id entrenamiento" />
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
 
                 <Button
-                    android:id="@+id/btn_Foto"
+                    android:id="@+id/btnIniciar"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:background="@color/colorAccent"
-                    android:text="Foto"
-                    android:textColor="@android:color/white" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_play_circle_filled_black_24dp"
+                    android:drawableTint="@color/colorWhite"
+                    android:text="Iniciar "
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:theme="@style/StyleButton"
+                    tools:enabled="false" />
 
+                <Button
+                    android:id="@+id/btnActualizar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_update_black_24dp"
+                    android:drawableTint="@color/colorWhite"
+                    android:text="Actualizar "
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:theme="@style/StyleButton" />
+
+
+                <Button
+                    android:id="@+id/btnParar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_stop_black_24dp"
+                    android:drawableTint="@color/colorWhite"
+                    android:text="Parar "
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:theme="@style/StyleButton" />
             </LinearLayout>
-
-            <EditText
-                android:id="@+id/campoNombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Descripción" />
-
-            <EditText
-                android:id="@+id/campoProfesion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="ubicación" />
-
-
-            <ImageView
-                android:id="@+id/imgFoto"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_below="@+id/linearLayout"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:src="@drawable/img_base" />
-
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnRegistrar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/colorAccent"
-            android:text="Registrar"
-            android:textColor="@android:color/white" />-->
+    </ScrollView>
 
 
 </android.support.design.widget.CoordinatorLayout>

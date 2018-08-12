@@ -83,9 +83,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(HomeActivity.this, "Grupo de apoyo", Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(HomeActivity.this, Deportes.class);
-                intent.putExtra("DATOS_USER", user);
-                startActivity(intent);*/
+                Intent intent = new Intent(HomeActivity.this, ListaAtletas.class);
+                //intent.putExtra("DATOS_USER", user);
+                startActivity(intent);
             }
         });
 

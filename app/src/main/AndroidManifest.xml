@@ -41,7 +41,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Actividades.Entrenamientos" />
         <activity android:name=".Actividades.LoginActivity" />
-        <activity android:name=".Actividades.CargarImagen"></activity>
+        <activity android:name=".Actividades.CargarImagen" />
+        <activity android:name=".Actividades.ListaAtletas"></activity>
     </application>
 
 </manifest>
